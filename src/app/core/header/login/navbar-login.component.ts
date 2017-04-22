@@ -26,7 +26,11 @@ export class NavbarLoginComponent {
                 private signinService: SigninService,
                 private router: Router) {
         this.isLoading = false;
-        this.signInModel = {
+        this.signInModel = this.defaultSigInModel;
+    }
+
+    get defaultSigInModel() {
+        return {
             email: '',
             password: ''
         };
@@ -40,7 +44,7 @@ export class NavbarLoginComponent {
             .then(
                 result => this.router.navigate(['/dashboard']),
                 err => {
-                    form.reset();
+                    form.setValue(this.defaultSigInModel);
                     this.router.navigate(['/signin'])
                         .then(res => this.signinService.setErrorMessage(err));
                 }
