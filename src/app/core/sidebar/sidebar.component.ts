@@ -9,5 +9,8 @@ import { Component } from '@angular/core';
     ],
 })
 export class SidebarComponent {
+
+    homeIcon: any = require('../../../public/icons/home.png');
+
     constructor(private router: Router) {}
 }
