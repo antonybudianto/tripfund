@@ -1,0 +1,10 @@
+<div class="scrollable">
+    <div class="person" *ngFor="let participant of participants">
+        <span class="amount">Rp {{ participant.amount }}</span>
+        <input type="checkbox">
+        <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+        <span class="name">
+            <strong>{{ participant.name }}</strong>
+        </span>
+    </div>
+</div>

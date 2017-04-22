@@ -1,7 +1,47 @@
 <div class="modal-dialog">
   <div class="modal-content">
-    <div class="modal-body text-center">
-      Test
+    <div class="modal-header">
+      Add a Bill
     </div>
+    <form novalidate>
+      <div class="modal-body text-center">
+        <div class="modal-body__body">
+          <div class="main-fields">
+            <img src="../../../../public/images/general.png" class="category">
+            <input type="text" class="description" placeholder="Description" />
+            <div class="input-group">
+              <span class="input-group-addon">$</span>
+              <input type="text" class="form-control" placeholder="0.00">
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon">Paid By</span>
+              <select class="form-control" name="paid" id="paid">
+                <option>Test</option>
+              </select>
+            </div>
+          </div>
+          <br/>
+          <tabset #billTabs>
+            <tab heading="Split Equally">
+              <app-split-bill></app-split-bill>
+            </tab>
+            <tab heading="Split By Percentages">
+              <app-split-bill></app-split-bill>
+            </tab>
+            <tab heading="Split By Amounts">
+              <app-split-bill></app-split-bill>
+            </tab>
+          </tabset>
+        </div>
+      </div>
+      <div class="modal-footer__button">
+        <button type="button" class="btn btn-default" (click)="closeModal(false)">
+        {{ modalData.btnCancel }}
+      </button>
+        <button type="button" class="btn btn-primary" (click)="closeModal(true)">
+        {{ modalData.btnSave }}
+      </button>
+      </div>
+    </form>
   </div>
 </div>

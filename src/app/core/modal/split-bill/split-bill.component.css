@@ -1,0 +1,29 @@
+.scrollable {
+    height: 180px;
+    overflow: scroll;
+}
+
+.person {
+    user-select: none;
+    padding: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.person:hover {
+    background-color: #f5f5f5;
+}
+
+.amount {
+    float: right;
+    margin-top: 4px;
+    margin-right: 8px;
+}
+
+input[type=checkbox] {
+    height: 20px;
+    width: 20px;
+    font-size: 20px;
+}

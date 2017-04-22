@@ -21,11 +21,4 @@ export class HomeComponent {
         private cfr: ComponentFactoryResolver) {
         this.cfr = cfr;
     }
-
-    test() {
-        this.modalService.show(ModalBillComponent, this.modalConfig)
-            .subscribe((result) => {
-                console.log(result);
-            });
-    }
 }

@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 
 import { AccordionModule } from 'primeng/primeng';
 import { ModalModule } from './core/modal/modal.module';
+import { TooltipModule } from 'ngx-bootstrap';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import { ModalModule } from './core/modal/modal.module';
         GuestModule,
         AppRoutingModule,
         AccordionModule,
-        ModalModule
+        ModalModule,
+        TooltipModule.forRoot()
     ],
     bootstrap: [ AppComponent ],
     schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
