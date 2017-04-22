@@ -1,43 +1,12 @@
 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <nav class="side-nav">
-        <ul class="nav navbar-nav">
-            <li>
-                <a href="#">
-                    <img src="http://simpleicon.com/wp-content/uploads/rocket.svg" width="26" height="26">
-                    <span>Home</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <img src="http://simpleicon.com/wp-content/uploads/rocket.svg" width="26" height="26">
-                    <span>Home</span>
-                </a>
-            </li>   
-            <li>
-                <a href="#">
-                    <img src="http://simpleicon.com/wp-content/uploads/rocket.svg" width="26" height="26">
-                    <span>Home</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <app-sidebar class="page-nav"></app-sidebar>
     <div class="page-wrap">
         <div class="card-wrap">
-            <div class="card-view">
-                <div class="card-side-left">
-                    <h4 class="card-title">Jono Trip</h4>
-                    <h6 class="card-name">
-                        Jono, Antony
-                        <span class="fa fa-user-o card-money"><label class="fa-left">5</label></span>
-                    </h6>
-                    <span class="fa fa-calendar-o panel-calendar"><label class="fa-left">15 Aug 2017</label></span>
-                </div>
-                <div class="card-side-right">
-                    <span class="fa fa-money card-money"><label class="fa-left">15.000</label></span>
-                </div>
+            <div class="side-left">
+                <app-card></app-card>
             </div>
             <div class="side-right">
-                asd
+                <app-card-detail></app-card-detail>
             </div>
         </div>
     </div>

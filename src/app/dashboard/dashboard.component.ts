@@ -7,4 +7,4 @@ import { Component } from '@angular/core';
         './dashboard.component.css'
     ]
 })
-export class DashboardComponent {}
+export class DashboardComponent { }
