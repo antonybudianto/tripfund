@@ -59,6 +59,10 @@ module.exports = webpackMerge(commonConfig, {
       {
         from: './src/public/images',
         to: './images'
+      },
+      {
+        from: './src/public/icons',
+        to: './icons'
       }
     ])
   ]
