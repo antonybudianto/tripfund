@@ -1,7 +1,7 @@
-import { GuestRoutingModule } from './guest/guest-routing.module';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { GuestModule } from './guest/guest.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -19,7 +19,7 @@ import { AccordionModule } from 'primeng/primeng';
         CoreModule,
         SharedModule,
         HomeModule,
-        GuestRoutingModule,
+        GuestModule,
         AppRoutingModule,
         AccordionModule
     ],
