@@ -1,6 +1,6 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
+import { SharedModule } from '../../shared/shared.module';
 import { CardComponent } from './card.component';
 
 @NgModule({
@@ -8,7 +8,7 @@ import { CardComponent } from './card.component';
         CardComponent
     ],
     imports: [
-        CommonModule
+        SharedModule
     ],
     exports: [
         CardComponent
