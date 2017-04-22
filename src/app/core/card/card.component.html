@@ -1,4 +1,4 @@
-<div *ngFor="let trip of trips" class="card-view">
+<div *ngFor="let trip of trips" (click)="handleClickCard(trip)" class="card-view">
     <div class="card-panel">
         <div class="card-side-left">
             <h4 class="card-title">{{trip.name}}</h4>

@@ -53,6 +53,10 @@ export class CardComponent implements OnInit {
         .map(p => p.name).join(', ');
     }
 
+    handleClickCard(trip: any) {
+        this.select.emit(trip.bills);
+    }
+
     selectData(field: CardField) {
         this.select.emit(field.id);
     }
