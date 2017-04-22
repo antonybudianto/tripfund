@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { OnInit, OnDestroy, Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
+import { Subscription } from 'rxjs/Subscription';
+
+import { SigninService } from './signin.service';
 import { AuthService } from '../../core/auth/auth.service';
 
 @Component({
@@ -10,20 +13,32 @@ import { AuthService } from '../../core/auth/auth.service';
         './signin.component.css'
     ]
 })
-export class SignInComponent {
+export class SignInComponent implements OnDestroy, OnInit {
     signInModel: any;
     submitted: boolean;
     errorMessage: string;
     isLoading: boolean;
+    signinSubscription: Subscription;
 
     constructor(private authService: AuthService,
-                private router: Router) {
+                private signinService: SigninService,
+                private router: Router,
+                private route: ActivatedRoute) {
         this.submitted = false;
         this.isLoading = false;
         this.signInModel = {
             email: '',
             password: ''
         };
+    }
+
+    ngOnInit() {
+        this.signinSubscription = this.signinService.getErrorMessage()
+            .subscribe(res => this.errorMessage = res.message);
+    }
+
+    ngOnDestroy() {
+        this.signinSubscription.unsubscribe();
     }
 
     handleSubmit(form: any) {

@@ -1,8 +1,26 @@
-<div class="card">
-  <h3 class="card-header">Featured</h3>
-  <div class="card-block">
-    <h4 class="card-title">Special title treatment</h4>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
+<div *ngFor="let trip of trips" class="card-view">
+    <div class="card-panel">
+        <div class="card-side-left">
+            <h4 class="card-title">{{trip.name}}</h4>
+        </div>
+        <div class="card-side-right">
+            <span class="fa fa-money card-money"><label class="fa-left">{{getBillSum(trip.bills)}}</label></span>
+        </div>
+    </div>
+    <div class="card-panel">
+        <div class="card-side-left">
+            <h6 class="card-name">
+                {{getParticipants(trip.participants)}}
+                <span class="fa fa-user-o card-money"><label class="fa-left">{{trip.participants.length}}</label></span>
+            </h6>
+        </div>
+    </div>
+    <div class="card-panel">
+        <div class="card-side-left">
+            <span class="fa fa-calendar-o panel-calendar"><label class="fa-left">{{trip.date}}</label></span>
+        </div>
+        <div class="card-side-right">
+            <a href="#">see details</a>
+        </div>
+    </div>
 </div>

@@ -1,0 +1,42 @@
+<div class="login-container">
+    <form autocomplete="off" (ngSubmit)="loginWithPassword(loginForm)" #loginForm="ngForm" novalidate>
+        <div class="row">
+            <div class="col-xs-12 login-content">
+                <input type="text" name="email"
+                    class="form-control input-sm"
+                    placeholder="Email address"
+                    [ngModel]="signInModel.email" />
+            </div>
+            <div class="col-xs-12 login-content">
+                <input type="password" name="password"
+                    class="form-control input-sm"
+                    placeholder="Password"
+                    [ngModel]="signInModel.password" />
+            </div>
+            <div class="col-xs-12 login-content">
+                <button type="submit"
+                        [disabled]="isLoading"
+                        class="btn btn-sm btn-block btn-primary">
+                    <span *ngIf="isLoading"><i class="fa fa-spin fa-spinner"></i></span>
+                    Log in to TripFund
+                </button>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            Forgot your password?
+            <a [routerLink]="['/reset-password']">Click here</a>
+        </div>
+    </div>
+    <hr class="login-separator" />
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            Or log in with
+            <br />
+            <a (click)="loginWithFacebook()">Facebook</a> /
+            <a (click)="loginWithGoogle()">Google</a> /
+            <a (click)="loginWithTwitter()">Twitter</a>
+        </div>
+    </div>
+</div>
