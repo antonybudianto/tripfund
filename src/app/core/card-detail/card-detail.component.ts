@@ -7,6 +7,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class CardDetailComponent implements OnInit {
 
+    @Input() bills: Array<any> = [];
+
     constructor() {
         console.log('card component constructor');
     }
