@@ -14,7 +14,7 @@ import { AuthService } from './../auth/auth.service';
     ],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
     @Input() brand: string;
     user: any;
     favicon: any = require('../../../public/favicon.ico');
@@ -23,4 +23,18 @@ export class HeaderComponent {
     constructor(private authService: AuthService,
                 private cd: ChangeDetectorRef,
                 private router: Router) {}
+
+    ngOnInit() {
+        this.subscriptions.push(
+            this.authService.getAuth$()
+            .subscribe(user => {
+                this.user = user;
+                this.cd.markForCheck();
+            })
+        );
+    }
+
+    ngOnDestroy() {
+        this.subscriptions.forEach(sub => sub.unsubscribe());
+    }
 }

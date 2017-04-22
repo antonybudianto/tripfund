@@ -15,33 +15,21 @@ import { SigninService } from '../../../guest/signin/signin.service';
     ],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NavbarLoginComponent implements OnDestroy, OnInit {
+export class NavbarLoginComponent {
     @Input() brand: string;
     @Output() onClick: EventEmitter<any> = new EventEmitter();
     isLoading: boolean;
     signInModel: any;
-    user: any;
     private subscriptions: Subscription[] = [];
 
     constructor(private authService: AuthService,
                 private signinService: SigninService,
-                private cd: ChangeDetectorRef,
                 private router: Router) {
         this.isLoading = false;
         this.signInModel = {
             email: '',
             password: ''
         };
-    }
-
-    ngOnInit() {
-        this.subscriptions.push(
-            this.authService.getAuth$()
-            .subscribe(user => {
-                this.user = user;
-                this.cd.markForCheck();
-            })
-        );
     }
 
     loginWithPassword(form: any) {
@@ -52,6 +40,7 @@ export class NavbarLoginComponent implements OnDestroy, OnInit {
             .then(
                 result => this.router.navigate(['/dashboard']),
                 err => {
+                    form.reset();
                     this.router.navigate(['/signin'])
                         .then(res => this.signinService.setErrorMessage(err));
                 }
@@ -79,12 +68,8 @@ export class NavbarLoginComponent implements OnDestroy, OnInit {
         this.onClick.emit();
     }
 
-    logout() {
-        this.authService.logout();
-        this.router.navigate(['/']);
-    }
-
-    ngOnDestroy() {
-        this.subscriptions.forEach(sub => sub.unsubscribe());
+    goToForgotPassword() {
+        this.router.navigate(['/reset-password'])
+            .then(res => this.onClick.emit());
     }
 }
