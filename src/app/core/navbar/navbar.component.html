@@ -22,11 +22,20 @@
                 <li>
                     <a href="#contact">Contact</a>
                 </li>
-                <li>
-                    <div class="button-container" *ngIf="!user">
-                        <button [routerLink]="['/register']" class="btn btn-default navbar-btn">Register</button>
-                        <button [routerLink]="['/signin']" class="btn btn-default navbar-btn">Sign in</button>
-                    </div>
+                <li dropdown [autoClose]="false" [isOpen]="isOpen">
+                    <button dropdownToggle
+                            type="button"
+                            class="btn btn-sm btn-default navbar-btn dropdown-toggle">
+                        Login
+                    </button>
+                    <ul *dropdownMenu class="dropdown-menu" role="menu">
+                        <li>
+                            <app-navbar-login (onClick)="isOpen = false"></app-navbar-login>
+                        </li>
+                    </ul>
+                </li>
+                <li class="button-container">
+                    <button [routerLink]="['/register']" class="btn btn-sm btn-default navbar-btn">Sign up</button>
                 </li>
                 <li *ngIf="user">
                     <a [routerLink]="['/dashboard']">Dashboard</a>

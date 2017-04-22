@@ -11,17 +11,19 @@ import { AuthService } from './../auth/auth.service';
     templateUrl: './navbar.component.html',
     styleUrls: [
         './navbar.component.css'
-    ],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    ]
 })
 export class NavbarComponent implements OnDestroy, OnInit {
     @Input() brand: string;
     user: any;
+    isOpen: boolean;
     private subscriptions: Subscription[] = [];
 
     constructor(private authService: AuthService,
                 private cd: ChangeDetectorRef,
-                private router: Router) {}
+                private router: Router) {
+        this.isOpen = false;
+    }
 
     ngOnInit() {
         this.subscriptions.push(
