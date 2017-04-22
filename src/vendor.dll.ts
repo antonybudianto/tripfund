@@ -17,6 +17,9 @@ import '@angular/router';
 // HMR
 import '@angularclass/hmr';
 
+import 'primeng/primeng';
+import 'ngx-bootstrap';
+import 'lodash';
 import 'firebase';
 import 'angularfire2';
 
