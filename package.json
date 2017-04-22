@@ -37,7 +37,7 @@
     "webdriver:update": "npm run webdriver-manager update",
     "coveralls": "coveralls < ./coverage/lcov.info",
     "stat": "node ./config/dashboard",
-    "deploy": "firebase deploy"
+    "deploy": "npm run build && firebase deploy"
   },
   "keywords": [
     "angular",
@@ -101,6 +101,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "2.0.3",
     "lodash": "^4.17.4",
+    "moment": "^2.17.1",
     "ngx-bootstrap": "^1.6.6",
     "npm-run-all": "^4.0.2",
     "null-loader": "^0.1.1",
