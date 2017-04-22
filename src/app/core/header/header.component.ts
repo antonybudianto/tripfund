@@ -17,6 +17,7 @@ import { AuthService } from './../auth/auth.service';
 export class HeaderComponent {
     @Input() brand: string;
     user: any;
+    favicon: any = require('../../../public/favicon.ico');
     private subscriptions: Subscription[] = [];
 
     constructor(private authService: AuthService,
