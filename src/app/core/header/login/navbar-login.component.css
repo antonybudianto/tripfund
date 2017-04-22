@@ -1,0 +1,14 @@
+.login {
+    &-container {
+        padding: 15px;
+        width: 300px;
+    }
+
+    &-content {
+        margin-bottom: 10px;
+    }
+
+    &-separator {
+        margin: 5px 0;
+    }
+}

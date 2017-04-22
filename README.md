@@ -12,5 +12,8 @@ https://tripfund-91050.firebaseapp.com
 - [prime-ng](https://www.primefaces.org/primeng/)
 - [jQuery](https://jquery.com/)
 
+# Image sources
+- https://www.toptal.com/designers/subtlepatterns/japanese-sayagata/
+
 # Backend and Hosting:
 - [Firebase](http://firebase.com/)

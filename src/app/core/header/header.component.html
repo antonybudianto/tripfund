@@ -1,17 +1,49 @@
 <header class="site-header">
-  <div class="menu-toggle-area">
-    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+    <div class="menu-toggle-area">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-  </div>
-  <div class="logo">
-    <a [routerLink]="['/']">
-        <img [src]="favicon" width="52" height="52">
-    </a>
-  </div>
-  <div class="header-middle-area">
-    <a class="navbar-brand topnav" [routerLink]="['/']">tripfund</a>
-  </div>
+    </div>
+    <div class="logo">
+        <a [routerLink]="['/']">
+            <img [src]="favicon" width="52" height="52">
+        </a>
+    </div>
+    <div class="header-middle-area">
+        <a class="navbar-brand topnav" [routerLink]="['/']">tripfund</a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar">
+        <ul class="nav navbar-nav navbar-right">
+            <li *ngIf="!user" dropdown [autoClose]="false" [isOpen]="isOpen">
+                <button dropdownToggle
+                        (click)="isOpen = true"
+                        type="button"
+                        class="btn btn-sm btn-default navbar-btn dropdown-toggle">
+                    Login
+                </button>
+                <ul *dropdownMenu class="dropdown-menu" role="menu">
+                    <li>
+                        <app-navbar-login (onClick)="isOpen = false"></app-navbar-login>
+                    </li>
+                </ul>
+            </li>
+            <li *ngIf="!user" class="button-container">
+                <button [routerLink]="['/register']" class="btn btn-sm btn-default navbar-btn">Sign up</button>
+            </li>
+            <li *ngIf="user">
+                <a [routerLink]="['/dashboard']">Dashboard</a>
+            </li>
+            <li class="dropdown" *ngIf="user">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome. {{user.name}} <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Change password</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a (click)="logout()">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 </header>

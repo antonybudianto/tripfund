@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-dashboard',
@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
         './dashboard.component.css'
     ]
 })
-export class DashboardComponent {}
+export class DashboardComponent {
+    bills: Array<any> = [];
+
+    handleCardSelect(bills: Array<any>) {
+        this.bills = bills;
+    }
+}
