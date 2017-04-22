@@ -19,10 +19,7 @@ export class AuthService {
     getAuth$(): Observable<User> {
         return this.afAuth.authState
         .switchMap((auth: any) => {
-            if (auth) {
-                return this.afDb.object('/users/' + auth.uid);
-            }
-            return Observable.of(null);
+            return Observable.of(auth || null);
         });
     }
 
