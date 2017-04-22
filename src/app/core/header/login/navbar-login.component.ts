@@ -5,6 +5,7 @@ import { Component, Input, ChangeDetectionStrategy, EventEmitter,
 import { Subscription } from 'rxjs/Subscription';
 
 import { AuthService } from './../../auth/auth.service';
+import { SigninService } from '../../../guest/signin/signin.service';
 
 @Component({
     selector: 'app-navbar-login',
@@ -23,6 +24,7 @@ export class NavbarLoginComponent implements OnDestroy, OnInit {
     private subscriptions: Subscription[] = [];
 
     constructor(private authService: AuthService,
+                private signinService: SigninService,
                 private cd: ChangeDetectorRef,
                 private router: Router) {
         this.isLoading = false;
@@ -48,15 +50,16 @@ export class NavbarLoginComponent implements OnDestroy, OnInit {
 
         this.authService.loginWithPassword(formValue.email, formValue.password)
             .then(
-                result => {
-                    this.isLoading = false;
-                    this.onClick.emit();
-                    this.router.navigate(['/dashboard']);
-                },
+                result => this.router.navigate(['/dashboard']),
                 err => {
+                    this.router.navigate(['/signin'])
+                        .then(res => this.signinService.setErrorMessage(err));
+                }
+            )
+            .then(
+                res => {
                     this.isLoading = false;
                     this.onClick.emit();
-                    this.router.navigate(['/signin']);
                 }
             );
     }
