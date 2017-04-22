@@ -1,5 +1,5 @@
 import { ComponentFactoryResolver } from '@angular/core';
-import { ModalOptions, ModalDirective } from 'ng2-bootstrap';
+import { ModalOptions, ModalDirective } from 'ngx-bootstrap';
 import { Subject } from 'rxjs/Subject';
 
 export interface ModalConfig {

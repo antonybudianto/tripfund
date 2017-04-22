@@ -4,11 +4,13 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home.component';
 
 import { SplitButtonModule } from 'primeng/primeng';
+import { ModalModule } from '../core/modal/modal.module';
 
 @NgModule({
     imports: [
-        RouterModule,
-        SplitButtonModule
+        SplitButtonModule,
+        ModalModule,
+        RouterModule
     ],
     declarations: [
         HomeComponent

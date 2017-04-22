@@ -1,9 +1,10 @@
 import { NgModule, ModuleWithProviders, ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
 
-import { ModalModule as ModalBootstrapModule } from 'ng2-bootstrap';
+import { ModalModule as ModalBootstrapModule } from 'ngx-bootstrap';
 
 import { ModalComponent } from './modal.component';
 import { ModalService } from './modal.service';
+import { ModalBillComponent } from './modal-bill/modal-bill.component';
 
 @NgModule({
   imports: [
@@ -11,13 +12,17 @@ import { ModalService } from './modal.service';
   ],
   declarations: [
     ModalComponent,
+    ModalBillComponent
   ],
   exports: [
-    ModalComponent
+    ModalComponent,
+    ModalBillComponent
   ],
   providers: [
+    ModalService,
     { provide: ANALYZE_FOR_ENTRY_COMPONENTS, useValue: [
-      ModalComponent
+      ModalComponent,
+      ModalBillComponent
     ], multi: true }
   ]
 })
