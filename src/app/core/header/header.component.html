@@ -16,7 +16,7 @@
     </div>
     <div class="collapse navbar-collapse" id="navbar">
         <ul class="nav navbar-nav navbar-right">
-            <li dropdown [autoClose]="false" [isOpen]="isOpen">
+            <li *ngIf="!user" dropdown [autoClose]="false" [isOpen]="isOpen">
                 <button dropdownToggle
                         (click)="isOpen = true"
                         type="button"
@@ -29,7 +29,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="button-container">
+            <li *ngIf="!user" class="button-container">
                 <button [routerLink]="['/register']" class="btn btn-sm btn-default navbar-btn">Sign up</button>
             </li>
             <li *ngIf="user">
