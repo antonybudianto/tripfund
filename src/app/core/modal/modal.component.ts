@@ -11,7 +11,7 @@ import {
 
 import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
-import { ModalDirective } from 'ng2-bootstrap';
+import { ModalDirective } from 'ngx-bootstrap';
 import * as _ from 'lodash';
 
 import { ModalDispatchComponent } from './modal.interface';
@@ -26,9 +26,9 @@ export class ModalComponent implements OnInit, OnDestroy {
 
   @ViewChild('modal') modal: ModalDirective;
   @ViewChild('modalContent', { read: ViewContainerRef })
+  modalContent: ViewContainerRef;
   modalData: any;
   rootCfr: ComponentFactoryResolver;
-  private modalContent: ViewContainerRef;
   private modalSubscription: Subscription;
 
   constructor(private modalService: ModalService,

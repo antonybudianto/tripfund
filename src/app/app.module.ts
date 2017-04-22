@@ -9,6 +9,7 @@ import { HomeModule } from './home/home.module';
 import { AppComponent } from './app.component';
 
 import { AccordionModule } from 'primeng/primeng';
+import { ModalModule } from './core/modal/modal.module';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import { AccordionModule } from 'primeng/primeng';
         HomeModule,
         GuestRoutingModule,
         AppRoutingModule,
-        AccordionModule
+        AccordionModule,
+        ModalModule
     ],
     bootstrap: [ AppComponent ],
     schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
