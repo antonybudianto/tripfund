@@ -5,6 +5,13 @@ img {
     border: 0;
     -ms-interpolation-mode: bicubic;
 }
+.button-container {
+    margin-left: 10px;
+}
+
+.button-container > .btn {
+    margin-right: 2px;
+}
 .site-header {
     position: relative;
     display: -webkit-box;
