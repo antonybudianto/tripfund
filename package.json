@@ -37,7 +37,7 @@
     "webdriver:update": "npm run webdriver-manager update",
     "coveralls": "coveralls < ./coverage/lcov.info",
     "stat": "node ./config/dashboard",
-    "deploy": "firebase deploy"
+    "deploy": "npm run build && firebase deploy"
   },
   "keywords": [
     "angular",

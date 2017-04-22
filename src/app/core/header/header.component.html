@@ -7,46 +7,11 @@
     </button>
   </div>
   <div class="logo">
-    <a href="#">
-      Logo
+    <a [routerLink]="['/']">
+        <img [src]="favicon" width="52" height="52">
     </a>
   </div>
   <div class="header-middle-area">
-    <a href="#" class="logo-link">
-      TripFund
-    </a>
-  </div>
-  <button id="search-opener" class="button button-header search-opener-button">
-    <svg class="icon-search" width="26px" height="26px">
-      
-    </svg>
-    <svg class="icon-close" width="26px" height="26px">
-      
-    </svg>
-  </button>
-  <div class="search" role="search" id="search-area">
-    <form id="search-form" class="search-form" action="#">
-      <label for="q" id="search-label" class="screen-reader">
-        Search
-      </label>
-      <input aria-labelledby="search-label" id="q" required="" type="search" name="q" class="search-field" value="">
-      <button type="submit" class="button button-header search-button">
-        Submit
-      </button>
-    </form>
+    <a class="navbar-brand topnav" [routerLink]="['/']">tripfund</a>
   </div>
 </header>
-<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-    <nav>
-        <ul class="nav navbar-nav">
-            <li>
-                <a href="#">
-                    <svg class="icon-nav-home" width="26px" height="26px">
-                        
-                    </svg>
-                    <span>Home</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</div>

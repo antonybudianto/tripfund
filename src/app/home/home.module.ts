@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home.component';
 
@@ -8,7 +9,8 @@ import { ModalModule } from '../core/modal/modal.module';
 @NgModule({
     imports: [
         SplitButtonModule,
-        ModalModule
+        ModalModule,
+        RouterModule
     ],
     declarations: [
         HomeComponent
