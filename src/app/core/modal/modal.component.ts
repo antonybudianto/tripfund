@@ -18,18 +18,18 @@ import { ModalDispatchComponent } from './modal.interface';
 import { ModalService } from './modal.service';
 
 @Component({
-  selector: 'ctp-modal',
+  selector: 'app-modal',
   templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss']
+  styleUrls: ['./modal.component.css']
 })
 export class ModalComponent implements OnInit, OnDestroy {
 
   @ViewChild('modal') modal: ModalDirective;
   @ViewChild('modalContent', { read: ViewContainerRef })
-  private modalContent: ViewContainerRef;
-  private modalSubscription: Subscription;
   modalData: any;
   rootCfr: ComponentFactoryResolver;
+  private modalContent: ViewContainerRef;
+  private modalSubscription: Subscription;
 
   constructor(private modalService: ModalService,
               private vcr: ViewContainerRef,

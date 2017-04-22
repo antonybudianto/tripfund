@@ -7,10 +7,12 @@ import { ModalDispatchComponent, ModalConfig } from './modal.interface';
 
 @Injectable()
 export class ModalService {
-  private subject$: Subject<ModalDispatchComponent> = new Subject<ModalDispatchComponent>();
+  subject$: Subject<ModalDispatchComponent> = new Subject<ModalDispatchComponent>();
   observable$: Observable<ModalDispatchComponent> = this.subject$.asObservable();
 
-  constructor() { }
+  constructor() {
+    console.log('Modal Service Constructor');
+  }
 
   show(customComponent: any, config?: ModalConfig): Observable<any> {
     let result$ = new Subject<any>();
