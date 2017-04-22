@@ -49,16 +49,25 @@ export class NavbarLoginComponent implements OnDestroy, OnInit {
         this.authService.loginWithPassword(formValue.email, formValue.password)
             .then(
                 result => {
+                    this.isLoading = false;
+                    this.onClick.emit();
                     this.router.navigate(['/dashboard']);
                 },
                 err => {
-                    this.router.navigate(['/dashboard']);
+                    this.isLoading = false;
+                    this.onClick.emit();
+                    this.router.navigate(['/signin']);
                 }
             );
     }
 
     loginWithFacebook() {
         this.authService.loginWithFacebook();
+        this.onClick.emit();
+    }
+
+    loginWithTwitter() {
+        this.authService.loginWithTwitter();
         this.onClick.emit();
     }
 
