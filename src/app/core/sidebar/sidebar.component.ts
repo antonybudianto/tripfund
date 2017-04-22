@@ -11,6 +11,8 @@ import { AuthService } from '../auth/auth.service';
     ],
 })
 export class SidebarComponent {
+    homeIcon = '/icons/home.png';
+
     constructor(private router: Router,
                 private authService: AuthService) {}
 

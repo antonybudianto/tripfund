@@ -8,4 +8,9 @@ import { Component, OnInit } from '@angular/core';
     ]
 })
 export class DashboardComponent {
+    bills: Array<any> = [];
+
+    handleCardSelect(bills: Array<any>) {
+        this.bills = bills;
+    }
 }

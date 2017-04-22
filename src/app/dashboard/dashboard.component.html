@@ -3,10 +3,10 @@
     <div class="page-wrap">
         <div class="card-wrap">
             <div class="side-left">
-                <app-card></app-card>
+                <app-card (select)="handleCardSelect($event)">Loading...</app-card>
             </div>
             <div class="side-right">
-                <app-card-detail></app-card-detail>
+                <app-card-detail [bills]="bills"></app-card-detail>
             </div>
         </div>
     </div>

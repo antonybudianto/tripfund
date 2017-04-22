@@ -7,12 +7,13 @@
         -webkit-transition: 0.1s;
         transition: 0.1s;
     }
-    .side-nav>ul>li>a:hover, .side-nav>ul>li>a:focus {
+    .side-nav>ul>li>a:hover, .side-nav>ul>li>a:focus, .side-nav>ul>li>a.active {
+        border-right: 2px solid lightseagreen;
         opacity: 0.75;
         -webkit-transform: translateY(3px);
         transform: translateY(3px);
     }
-    .side-nav>ul>li>a:hover>span, .side-nav>ul>li>a:focus>span {
+    .side-nav>ul>li>a:hover>span, .side-nav>ul>li>a:focus>span, .side-nav>ul>li>a.active>span {
         -webkit-transform: translateX(0);
         transform: translateX(0);
     }

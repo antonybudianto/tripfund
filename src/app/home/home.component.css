@@ -15,8 +15,8 @@
 
 .intro-header {
     text-align: center;
-    color: #f8f8f8;
-    background-color: #027c84;
+    color: lightseagreen;
+    background: url(../images/sayagata.png) no-repeat center center;
     background-size: cover;
 }
 
