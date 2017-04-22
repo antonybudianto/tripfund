@@ -3,6 +3,7 @@ import { CardDetailModule } from './card-detail/card-detail.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { LoadingModule } from './loading/loading.module';
 import { AppFirebaseModule } from './firebase/app-firebase.module';
 import { HeaderModule } from './header/header.module';
 import { CardModule } from './card/card.module';
@@ -14,17 +15,14 @@ import { SigninService } from '../guest/signin/signin.service';
 @NgModule({
     imports: [
         CommonModule,
-        AppFirebaseModule,
-        HeaderModule,
-        CardModule,
-        SidebarModule,
-        CardDetailModule
+        AppFirebaseModule
     ],
     exports: [
         HeaderModule,
         CardModule,
         SidebarModule,
-        CardDetailComponent
+        CardDetailModule,
+        LoadingModule
     ],
     providers: [
         AuthService,
