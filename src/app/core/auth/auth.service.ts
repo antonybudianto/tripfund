@@ -23,6 +23,16 @@ export class AuthService {
         });
     }
 
+    getUser$(): Observable<User> {
+        return this.getAuth$()
+            .switchMap((user: User) => {
+                if (user) {
+                    return this.afDb.object(`users/${user.uid}`);
+                }
+                return Observable.of(null);
+            });
+    }
+
     createUser(user: User): Promise<any> {
         const { email, password } = user;
         return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
