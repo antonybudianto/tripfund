@@ -19,7 +19,7 @@
                     </strong> paid this bill
                 </h5>
                 <h5 *ngIf="participant.name !== bill.paidBy">
-                    <strong>{{participant.name}}</strong> owes
+                    <strong>{{participant.name === user.name ? 'You' : participant.name }}</strong> owes
                     <span class="owe">{{ currency }} {{participant.price}}</span>
                     <strong>to {{bill.paidBy === user.name ? 'You' : bill.paidBy}}</strong>
                 </h5>
