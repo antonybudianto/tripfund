@@ -1,4 +1,4 @@
-import { Component, Input, ComponentFactoryResolver } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ComponentFactoryResolver } from '@angular/core';
 
 import * as _ from 'lodash';
 import { ToastsManager } from 'ng2-toastr';
@@ -21,6 +21,7 @@ export class CardDetailComponent {
     @Input() tripDetails: TripDetails;
     @Input() tripId: string;
     @Input() currency = 'USD';
+    @Output() successPay: EventEmitter<any> = new EventEmitter<any>();
     user: User;
     private modalConfig: ModalConfig = {
         modalOptions: { backdrop: 'static' },
@@ -70,6 +71,10 @@ export class CardDetailComponent {
                     .take(1)
                     .subscribe(
                         _ => {
+                            this.successPay.emit({
+                                tripId: this.tripId,
+                                currency: this.currency
+                            });
                             this.toasts.success('Success Paid Billing.');
                         },
                         err => {
