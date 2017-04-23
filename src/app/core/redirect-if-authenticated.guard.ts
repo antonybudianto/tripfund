@@ -11,9 +11,9 @@ export class RedirectIfAuthGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     return this.afAuth.authState
       .take(1)
-      .map((authState: any) => !!authState)
-      .do(authenticated => {
-        if (authenticated) {
+      .map((authState: any) => !authState)
+      .do(notAuthenticated => {
+        if (!notAuthenticated) {
             this.router.navigate(['/dashboard']);
         }
       });
