@@ -1,19 +1,21 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
+
+import { TripDetails } from '../../model/tripDetails.model';
 
 @Component({
     selector: 'app-card-detail',
     templateUrl: './card-detail.component.html',
     styleUrls: ['./card-detail.component.css']
 })
-export class CardDetailComponent implements OnInit {
+export class CardDetailComponent implements OnChanges {
 
-    @Input() bills: Array<any> = [];
+    @Input() tripDetails: Array<any> = [];
 
     constructor() {
-        console.log('card component constructor');
+        console.log('constructor');
     }
 
-    ngOnInit() {
-        console.log('card component onInit');
+    ngOnChanges() {
+        console.log(this.tripDetails);
     }
 }
