@@ -78,6 +78,7 @@ export class CardComponent implements OnInit {
         .then(res => {
             console.log('add bill ok');
             this.successAddBill.emit();
+            this.handleClickCard(data.tripId);
         });
     }
 
