@@ -23,13 +23,16 @@
           <br/>
           <tabset #billTabs>
             <tab heading="Split Equally">
-              <app-split-bill></app-split-bill>
+              <app-split-bill [type]="splitBillType.EQUAL"
+                [participants]="modalData.participants"></app-split-bill>
             </tab>
             <tab heading="Split By Percentages">
-              <app-split-bill></app-split-bill>
+              <app-split-bill [type]="splitBillType.PERCENTAGE"
+                [participants]="modalData.participants"></app-split-bill>
             </tab>
             <tab heading="Split By Amounts">
-              <app-split-bill></app-split-bill>
+              <app-split-bill [type]="splitBillType.AMOUNT"
+                [participants]="modalData.participants"></app-split-bill>
             </tab>
           </tabset>
         </div>
