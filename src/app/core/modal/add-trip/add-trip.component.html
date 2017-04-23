@@ -3,11 +3,13 @@
     <div class="modal-header">
       Add a Trip
     </div>
-    <form novalidate>
+    <form novalidate (ngSubmit)="handleSubmit(addTripForm)" #addTripForm="ngForm">
       <div class="modal-body text-center">
         <div class="modal-body__body">
             <div class="row">
-                <input type="text" name="description" [(ngModel)]="data.tripName"
+                <input type="text" name="tripName" [(ngModel)]="data.tripName"
+                    [ngClass]="{'has-success': data.tripName,
+                    'has-error': !data.tripName && submitted}"
                     class="form-control description" placeholder="Trip Name" />
             </div>
             <div class="row">
@@ -35,7 +37,7 @@
         <button type="button" class="btn btn-default" (click)="closeModal(false)">
             {{ modalData.btnCancel }}
         </button>
-        <button type="button" class="btn btn-primary" (click)="closeModal(true)">
+        <button type="submit" class="btn btn-primary">
             {{ modalData.btnSave }}
         </button>
       </div>

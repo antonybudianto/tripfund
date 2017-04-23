@@ -23,6 +23,7 @@ export class ModalAddTripComponent {
         participants: []
     };
     users = [];
+    submitted: boolean;
     private modal: ModalDirective;
     private modalDefaultData: Object = {
         btnSave: 'Save',
@@ -71,5 +72,16 @@ export class ModalAddTripComponent {
             subscription.unsubscribe();
         });
         this.modal.hide();
+    }
+
+    handleSubmit(form: any) {
+        let formValue = form.value;
+        this.submitted = true;
+
+        if (!formValue.tripName) {
+            return;
+        }
+
+        this.closeModal(true);
     }
 }
