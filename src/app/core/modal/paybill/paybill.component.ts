@@ -39,22 +39,34 @@ export class ModalPaybillComponent {
         let formValue = form.value;
         this.submitted = true;
 
-        if (formValue.billing <= 0) {
+        if (!_.isNumber(+formValue.billing) || formValue.billing <= 0 || (+formValue.billing) > (+this.modalData.totalBill)) {
             this.isError = true;
         } else {
             this.isError = false;
         }
 
-        if (!form.valid) {
+        if (!form.valid || this.isError) {
             return;
         }
 
-
+//     tripId,
+//     billId,
+//     uid,
+//     price
+// }
+        const remainingBill = this.modalData.data.price - (+formValue.billing);
+        const data = Object.assign({}, this.modalData.data, {
+            price: remainingBill
+        });
+        this.closeModal(true, data);
     }
 
-    closeModal(result: boolean) {
+    closeModal(result: boolean, data = 0) {
         let subscription: Subscription = this.modal.onHidden.subscribe(() => {
-            this.modalSubject$.next(result);
+            this.modalSubject$.next({
+                status: result,
+                data
+            });
             this.modalSubject$.complete();
             subscription.unsubscribe();
         });
