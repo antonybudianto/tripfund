@@ -74,6 +74,7 @@ export class CardComponent implements OnInit {
             .subscribe(tripDetails => {
                 this.select.emit({
                     tripDetails: tripDetails,
+                    tripId: this.currentTripId,
                     currency: trip.currency
                 });
             }, () => []);

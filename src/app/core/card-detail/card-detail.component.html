@@ -25,9 +25,10 @@
                 </h5>
             </div>
             <div class="paybill" *ngIf="user.name !== bill.paidBy && isIncludedInBill(bill)">
-                <a class="btn btn-primary pay-bill">
+                <button class="btn btn-primary pay-bill"
+                    (click)="onHandlePaybill(bill)">
                     Pay Bill
-                </a>
+                </button>
             </div>
         </div>
     </div>

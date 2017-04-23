@@ -49,23 +49,15 @@ export class ModalPaybillComponent {
             return;
         }
 
-//     tripId,
-//     billId,
-//     uid,
-//     price
-// }
-        const remainingBill = this.modalData.data.price - (+formValue.billing);
-        const data = Object.assign({}, this.modalData.data, {
-            price: remainingBill
-        });
-        this.closeModal(true, data);
+        const remainingBill = this.modalData.totalBill - (+formValue.billing);
+        this.closeModal(true, remainingBill);
     }
 
-    closeModal(result: boolean, data = 0) {
+    closeModal(result: boolean, remainingBill = 0) {
         let subscription: Subscription = this.modal.onHidden.subscribe(() => {
             this.modalSubject$.next({
                 status: result,
-                data
+                remainingBill
             });
             this.modalSubject$.complete();
             subscription.unsubscribe();
