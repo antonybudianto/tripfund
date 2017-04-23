@@ -10,14 +10,7 @@
             <h4 class="card-title">{{trip.tripName}}</h4>
         </div>
         <div class="card-side-right">
-            <span class="fa fa-money card-money"><label class="fa-left"></label></span>
-        </div>
-    </div>
-    <div class="card-panel">
-        <div class="card-side-left">
-            <h6 class="card-name">
-                <span class="fa fa-user-o card-money"><label class="fa-left"></label></span>
-            </h6>
+            <span class="fa fa-money card-money"><label class="fa-left">{{trip.currency}}</label></span>
         </div>
     </div>
     <div class="card-panel">
@@ -25,7 +18,7 @@
             <span class="fa fa-calendar-o panel-calendar"><label class="fa-left">{{trip.date}}</label></span>
         </div>
         <div class="card-side-right">
-            <a (click)="handleClickCard(trip)">see details</a>
+            <a (click)="handleClickCard(trip.tripId)">see details</a>
         </div>
     </div>
 </div>

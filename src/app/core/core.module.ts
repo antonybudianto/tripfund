@@ -11,6 +11,7 @@ import { SidebarModule } from './sidebar/sidebar.module';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthService } from './auth/auth.service';
 import { SigninService } from '../guest/signin/signin.service';
+import { TripService } from './trip.service';
 
 @NgModule({
     imports: [
@@ -27,7 +28,8 @@ import { SigninService } from '../guest/signin/signin.service';
     providers: [
         AuthService,
         SigninService,
-        AuthGuard
+        AuthGuard,
+        TripService
     ]
 })
 export class CoreModule {
