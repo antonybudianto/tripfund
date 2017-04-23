@@ -15,7 +15,7 @@ import { User } from '../../auth/user.model';
 export class ModalPaybillComponent {
     modalData: any;
     modalSubject$: Subject<any>;
-    billing: string;
+    totalBillingPay: string;
     submitted: boolean;
     isError: boolean;
     private modal: ModalDirective;
@@ -26,7 +26,7 @@ export class ModalPaybillComponent {
 
     constructor(private afDb: AngularFireDatabase) {
         this.submitted = false;
-        this.billing = '';
+        this.totalBillingPay = '';
     }
 
     boot(modal: ModalDirective, modalData: Object) {
@@ -38,12 +38,16 @@ export class ModalPaybillComponent {
     handleSubmit(form: any) {
         let formValue = form.value;
         this.submitted = true;
-        this.isError = true;
+
+        if (formValue.billing <= 0) {
+            this.isError = true;
+        } else {
+            this.isError = false;
+        }
 
         if (!form.valid) {
             return;
         }
-
 
 
     }
