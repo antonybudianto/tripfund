@@ -17,6 +17,7 @@ import * as uuid from 'uuid/v4';
     ],
 })
 export class SidebarComponent {
+    @Output() afterAddTrip: EventEmitter<any> = new EventEmitter<any>();
     homeIcon = '/icons/home.png';
     private modalConfig: ModalConfig = {
         modalOptions: { backdrop: 'static' },
@@ -66,7 +67,7 @@ export class SidebarComponent {
 
             this.afDatabase.object('/').update(result)
             .then(res => {
-                console.log('CUCU!');
+                this.afterAddTrip.emit();
             });
         });
     }
