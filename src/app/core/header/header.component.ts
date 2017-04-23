@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     user: User;
     favicon: any = require('../../../public/favicon.ico');
     loading = false;
+    isOpen = false;
     private subscriptions: Subscription[] = [];
 
     constructor(private authService: AuthService,
@@ -46,6 +47,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 _ => this.toastrService.success('Please check your email.'),
                 err => this.toastrService.error(err)
             );
+    }
+
+    handleLoginClick() {
+        this.isOpen = false;
     }
 
     logout() {

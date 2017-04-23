@@ -10,12 +10,12 @@
             <h4 class="card-title">{{trip.tripName}}</h4>
         </div>
         <div class="card-side-right">
-            <span class="fa fa-money card-money"><label class="fa-left">{{trip.currency}}</label></span>
+            <i class="fa fa-money card-money"><i class="fa-left"></i></i> {{trip.currency}}
         </div>
     </div>
     <div class="card-panel">
         <div class="card-side-left">
-            <span class="fa fa-calendar-o panel-calendar"><label class="fa-left">{{trip.date}}</label></span>
+            <i class="fa fa-calendar-o panel-calendar"><i class="fa-left"></i> </i> {{trip.date}}
         </div>
         <div class="card-side-right">
             <a (click)="handleClickCard(trip.tripId)">see details</a>

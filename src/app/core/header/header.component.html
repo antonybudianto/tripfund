@@ -18,14 +18,14 @@
             <div class="nav navbar-nav navbar-right" *ngIf="loading">
                 <i class="fa fa-spin fa-spinner fa-lg navbar-text"></i>
             </div>
-            <ul class="nav navbar-nav navbar-right login" *ngIf="!loading && !user">
+            <ul class="nav navbar-nav navbar-right login" *ngIf="!loading && user === null">
                 <li dropdown [autoClose]="false" [isOpen]="isOpen" class="hidden-xs">
                     <button dropdownToggle (click)="isOpen = true" type="button" class="btn btn-sm btn-default navbar-btn dropdown-toggle">
                         Login
                     </button>
                     <ul *dropdownMenu class="dropdown-menu" role="menu">
                         <li>
-                            <app-navbar-login (onClick)="isOpen = false"></app-navbar-login>
+                            <app-navbar-login (onClick)="handleLoginClick()"></app-navbar-login>
                         </li>
                     </ul>
                 </li>
@@ -36,7 +36,7 @@
                     <button [routerLink]="['/register']" class="btn btn-sm btn-default navbar-btn">Sign up</button>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right" *ngIf="!loading && user">
+            <ul class="nav navbar-nav navbar-right" *ngIf="!loading && user !== null">
                 <li>
                     <a [routerLink]="['/dashboard']" routerLinkActive="active">Dashboard</a>
                 </li>
