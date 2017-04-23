@@ -1,0 +1,38 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            Pay Bill
+        </div>
+        <form novalidate (ngSubmit)="handleSubmit(paybillForm)" #paybillForm="ngForm">
+            <div class="modal-body text-center">
+                <div class="modal-body__body">
+                    <div class="main-fields">
+                        <img src="../../../../public/images/general.png" class="category">
+                        <div>
+                            <div class="text-left billing">
+                                <span>Total Bill: </span>
+                                <h2 class="inline-block">{{ modalData.totalBill }}</h2>
+                            </div>
+                            <div class="form-group text-left"
+                                [ngClass]="{'has-success': billing.valid, 'has-error': (billing.invalid || isError) && submitted}">
+                                <label for="pay">Pay</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">$</span>
+                                    <input type="text" [ngModel]="billing" name="billing" id="pay" class="form-control" placeholder="0.00" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer__button">
+                <button type="button" class="btn btn-default" (click)="closeModal(false)">
+                    {{ modalData.btnCancel }}
+                </button>
+                <button type="submit" class="btn btn-primary">
+                    {{ modalData.btnSave }}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
