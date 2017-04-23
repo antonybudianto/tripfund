@@ -23,18 +23,18 @@ export class ModalBillComponent {
         billName: '',
         total: 0
     };
+    tripDetail: TripDetails = new TripDetails();
+    selectedTab = SplitBillType.EQUAL;
     private tripId: string;
     private modal: ModalDirective;
     private modalDefaultData: Object = {
         btnSave: 'Save',
         btnCancel: 'Cancel'
     };
-    private tripDetail: TripDetails = new TripDetails();
     private tabs = {
         'Split Equally': SplitBillType.EQUAL,
         'Split By Amounts': SplitBillType.AMOUNT
     };
-    private selectedTab = SplitBillType.EQUAL;
 
     constructor(private afDb: AngularFireDatabase,
         private tripService: TripService) { }
