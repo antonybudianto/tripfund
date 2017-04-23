@@ -30,3 +30,16 @@
 .card-money{
     color: #83c157;
 }
+.add-bill{
+    padding: 5px 10px;
+    background-color: transparent;
+    color: #18bc9c;
+    border: 1px solid #18bc9c;
+    margin: 10px auto;
+    width: 50%;
+}
+
+.add-bill:hover{
+    background-color: #18bc9c;
+    color: white;
+}

@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { TripService } from '../trip.service';
 import { Trips } from '../../model/trips.model';
+import { TripDetails } from '../../model/tripDetails.model';
 
 @Component({
     selector: 'app-card',
@@ -10,9 +11,10 @@ import { Trips } from '../../model/trips.model';
 })
 export class CardComponent implements OnInit {
 
-    @Output() select: EventEmitter<any> = new EventEmitter<any>();
+    @Output() select: EventEmitter<TripDetails> = new EventEmitter<TripDetails>();
 
     trips: Array<Trips> =  [];
+    tripDetails: TripDetails;
     loading = false;
 
     constructor(private tripService: TripService) {}
@@ -31,10 +33,24 @@ export class CardComponent implements OnInit {
 
     setTrips(trips: Array<Trips>) {
         this.trips = trips;
-        console.log(trips.length);
     }
 
-    handleClickCard(trip: any) {
-        this.select.emit(trip);
+    handleClickCard(tripId: any) {
+        this.tripService.fetchTripDetails(tripId)
+            .map(tripDetails => {
+                let tmp = tripDetails;
+                tmp['bills'] = Object.values(tripDetails['bills']);
+                tmp['participants'] = Object.values(tripDetails['participants']);
+                return tmp;
+            })
+            .take(1)
+            .subscribe(tripDetails => {
+                console.log(tripDetails);
+                this.setTripDetails(tripDetails);
+            }, null);
+    }
+
+    setTripDetails(tripDetails) {
+        this.select.emit(tripDetails);
     }
 }
