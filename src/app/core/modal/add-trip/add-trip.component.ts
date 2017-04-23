@@ -37,7 +37,7 @@ export class ModalAddTripComponent {
     boot(modal: ModalDirective, modalData: Object) {
         this.modal = modal;
         this.modalData = _.merge({}, this.modalDefaultData, modalData);
-        this.afDb.list('users').subscribe((users: Array<User>) => {
+        this.afDb.list('users').take(1).subscribe((users: Array<User>) => {
             this.users = _.map(users, (user) => {
                 return {
                     label: user.name,
@@ -48,6 +48,7 @@ export class ModalAddTripComponent {
                 };
             });
             this.authService.getUser$()
+                .take(1)
                 .subscribe((user: User) => {
                     this.users = _.filter(this.users, (data) => {
                         return data.value.uid !== user.uid;
