@@ -15,10 +15,12 @@ import { ModalConfig } from '../modal/modal.interface';
 export class CardComponent implements OnInit {
 
     @Output() select: EventEmitter<TripDetails> = new EventEmitter<TripDetails>();
+    @Output() successAddBill: EventEmitter<any> = new EventEmitter<any>();
 
     trips: Array<Trips> =  [];
     tripDetails: TripDetails;
     loading = false;
+
     private modalConfig: ModalConfig = {
         modalOptions: { backdrop: 'static' },
         modalData: {}
@@ -71,12 +73,21 @@ export class CardComponent implements OnInit {
         this.select.emit(tripDetails);
     }
 
+    saveBill(data: any) {
+        this.tripService.saveBill(data)
+        .then(res => {
+            console.log('add bill ok');
+            this.successAddBill.emit();
+        });
+    }
+
     showAddBill(id: string) {
         this.modalConfig.cfr = this.cfr;
         this.modalConfig.modalData.tripId = id;
         this.modalService.show(ModalBillComponent, this.modalConfig)
+        .filter(result => result !== null)
         .subscribe((result: any) => {
-            console.log(result);
+            this.saveBill(result);
         });
     }
 }
