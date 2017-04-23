@@ -42,7 +42,16 @@ export class CardDetailComponent {
     }
 
     isIncludedInBill(bill) {
-        return _.includes(_.map(bill.participants, 'uid'), this.user.uid);
+        let ids = _.map(bill.participants, 'uid');
+        let isIncluded = _.includes(ids, this.user.uid);
+        if (isIncluded) {
+            let selectedParticipant = _.find(bill.participants,
+            (data: any) => {
+                return data.uid === this.user.uid;
+            });
+            isIncluded = isIncluded && selectedParticipant.price > 0;
+        }
+        return isIncluded;
     }
 
     getMyBillingParticipant(bill) {
