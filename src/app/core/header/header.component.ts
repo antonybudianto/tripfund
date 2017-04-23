@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     @Input() brand: string;
     user: any;
     favicon: any = require('../../../public/favicon.ico');
+    loading = false;
     private subscriptions: Subscription[] = [];
 
     constructor(private authService: AuthService,
@@ -25,9 +26,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
                 private router: Router) {}
 
     ngOnInit() {
+        this.loading = true;
         this.subscriptions.push(
             this.authService.getAuth$()
             .subscribe(user => {
+                this.loading = false;
                 this.user = user;
                 this.cd.markForCheck();
             })
