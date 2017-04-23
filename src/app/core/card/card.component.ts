@@ -1,10 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
-import { AngularFireDatabase } from 'angularfire2/database';
-
-import { User } from '../auth/user.model';
-import { AuthService } from '../auth/auth.service';
-import { CardField } from './card-field.interface';
+import { TripService } from '../trip.service';
+import { Trips } from '../../model/trips.model';
 
 @Component({
     selector: 'app-card',
@@ -12,15 +9,13 @@ import { CardField } from './card-field.interface';
     styleUrls: ['./card.component.css']
 })
 export class CardComponent implements OnInit {
-    @Input() field: CardField;
+
     @Output() select: EventEmitter<any> = new EventEmitter<any>();
 
-    trips: Array<any> = [];
+    trips: Array<Trips> =  [];
     loading = false;
 
-    constructor(private afDb: AngularFireDatabase,
-                private authService: AuthService) {
-    }
+    constructor(private tripService: TripService) {}
 
     ngOnInit() {
         this.fetch();
@@ -32,36 +27,22 @@ export class CardComponent implements OnInit {
 
     fetch() {
         this.loading = true;
-        this.authService.getAuth$()
-        .switchMap((user: User) => {
-            return this.afDb.list(`trip-details/${user.uid}`);
-        })
-        .take(1)
-        .subscribe((trips: Array<any>) => {
-            this.setTrips(trips);
-        }, null, () => {
-            this.loading = false;
-        });
+
+        this.tripService.fetchTrips()
+            .take(1)
+            .subscribe((trips: Array<Trips>) => {
+                this.setTrips(trips);
+            }, null, () => {
+                this.loading = false;
+            });
     }
 
-    setTrips(trips: Array<any>) {
+    setTrips(trips: Array<Trips>) {
         this.trips = trips;
+        console.log(trips.length);
     }
-
-    // getBillSum(bills: Array<any>) {
-    //     return bills.reduce((acc, curr) => curr.total + acc, 0);
-    // }
-
-    // getParticipants(participants: Array<any>) {
-    //     return participants
-    //     .map(p => p.name).join(', ');
-    // }
 
     handleClickCard(trip: any) {
         this.select.emit(trip);
-    }
-
-    selectData(field: CardField) {
-        this.select.emit(field.id);
     }
 }
