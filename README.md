@@ -1,4 +1,4 @@
-# TripFun
+# TripFund
 
 ## Hosted on Firebase
 https://tripfund-91050.firebaseapp.com
