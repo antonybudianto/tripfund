@@ -6,6 +6,7 @@ import {
 } from 'ngx-bootstrap';
 import { MultiSelectModule } from 'primeng/primeng';
 
+import { ModalPaybillComponent } from './paybill/paybill.component';
 import { ModalComponent } from './modal.component';
 import { ModalService } from './modal.service';
 import { ModalBillComponent } from './modal-bill/modal-bill.component';
@@ -26,7 +27,8 @@ import { ModalAddTripComponent } from './add-trip/add-trip.component';
         ModalComponent,
         ModalBillComponent,
         SplitBillComponent,
-        ModalAddTripComponent
+        ModalAddTripComponent,
+        ModalPaybillComponent
     ],
     exports: [
         ModalComponent,
@@ -34,15 +36,14 @@ import { ModalAddTripComponent } from './add-trip/add-trip.component';
         SplitBillComponent,
         ModalAddTripComponent
     ],
+    entryComponents: [
+        ModalComponent,
+        ModalBillComponent,
+        ModalAddTripComponent,
+        ModalPaybillComponent
+    ],
     providers: [
-        ModalService,
-        {
-            provide: ANALYZE_FOR_ENTRY_COMPONENTS, useValue: [
-                ModalComponent,
-                ModalBillComponent,
-                ModalAddTripComponent
-            ], multi: true
-        }
+        ModalService
     ]
 })
 export class ModalModule {
