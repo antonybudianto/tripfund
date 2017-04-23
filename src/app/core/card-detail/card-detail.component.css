@@ -10,6 +10,13 @@ ol, ul {
     display: flex;
     align-items: center;
 }
+.circle{
+    border-radius: 50%;
+}
+.profile{
+    text-align: center;
+    display: inline-block;
+}
 .card-view{
     margin: 10px;
     background-color: #fbfbfb;

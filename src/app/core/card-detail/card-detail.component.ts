@@ -9,10 +9,14 @@ import { TripDetails } from '../../model/tripDetails.model';
 })
 export class CardDetailComponent implements OnChanges {
 
-    @Input() tripDetails: Array<any> = [];
+    @Input() tripDetails: Array<TripDetails> = [];
 
     constructor() {
         console.log('constructor');
+    }
+
+    isShow() {
+        return this.tripDetails.length > 0 && this.tripDetails[0].bills.length > 0;
     }
 
     ngOnChanges() {
