@@ -15,7 +15,7 @@
         <a class="navbar-brand topnav" [routerLink]="['/']">tripfund</a>
     </div>
     <div class="collapse navbar-collapse" id="navbar">
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right" *ngIf="!loading">
             <li *ngIf="!user" dropdown [autoClose]="false" [isOpen]="isOpen">
                 <button dropdownToggle
                         (click)="isOpen = true"
@@ -33,7 +33,7 @@
                 <button [routerLink]="['/register']" class="btn btn-sm btn-default navbar-btn">Sign up</button>
             </li>
             <li *ngIf="user">
-                <a [routerLink]="['/dashboard']">Dashboard</a>
+                <a [routerLink]="['/dashboard']" routerLinkActive="active">Dashboard</a>
             </li>
             <li class="dropdown" *ngIf="user">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome. {{user.name}} <span class="caret"></span></a>
