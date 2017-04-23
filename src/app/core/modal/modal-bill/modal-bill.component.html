@@ -16,7 +16,7 @@
                 [(ngModel)]="data.billName"/>
             <div class="input-group" [ngClass]="{'has-success': data.total,
                 'has-error': !data.total && submitted}">
-              <span class="input-group-addon">$</span>
+              <span class="input-group-addon">{{ modalData.currency }}</span>
               <input type="number" min="1" name="total" [(ngModel)]="data.total"
                 class="form-control" placeholder="0.00">
             </div>
@@ -36,11 +36,13 @@
             <tab heading="Split Equally" (select)="selectTab($event)">
               <app-split-bill [type]="selectedTab"
                 [total]="data.total"
+                [currency]="modalData.currency"
                 [(participants)]="tripDetail.participants"></app-split-bill>
             </tab>
             <tab heading="Split By Amounts" (select)="selectTab($event)">
               <app-split-bill [type]="selectedTab"
                 [total]="data.total"
+                [currency]="modalData.currency"
                 [(participants)]="tripDetail.participants"
                 (isValid)="isValid($event)"></app-split-bill>
             </tab>

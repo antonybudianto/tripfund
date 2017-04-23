@@ -18,11 +18,11 @@
             <i class="fa fa-calendar-o panel-calendar"><i class="fa-left"></i> </i> {{trip.date}}
         </div>
         <div class="card-side-right">
-            <a (click)="handleClickCard(trip.tripId)">see details</a>
+            <a (click)="handleClickCard(trip)">see details</a>
         </div>
     </div>
     <div class="card-panel">
-        <a (click)="showAddBill(trip.tripId)" class="btn btn-primary add-bill">
+        <a (click)="showAddBill(trip)" class="btn btn-primary add-bill">
             Add Bill
         </a>
     </div>

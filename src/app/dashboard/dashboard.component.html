@@ -6,7 +6,8 @@
                 <app-card #appCard (select)="handleCardSelect($event)">Loading...</app-card>
             </div>
             <div class="side-right">
-                <app-card-detail [tripDetails]="tripDetails"></app-card-detail>
+                <app-card-detail [tripDetails]="tripDetails"
+                [currency]="currency"></app-card-detail>
             </div>
         </div>
     </div>

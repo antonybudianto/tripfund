@@ -11,8 +11,10 @@ import { TripDetails } from '../model/tripDetails.model';
 })
 export class DashboardComponent {
     tripDetails: TripDetails;
+    currency: string;
 
-    handleCardSelect(tripDetails: TripDetails) {
-        this.tripDetails = tripDetails;
+    handleCardSelect(data: any) {
+        this.tripDetails = data.tripDetails;
+        this.currency = data.currency;
     }
 }

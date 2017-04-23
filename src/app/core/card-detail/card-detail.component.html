@@ -10,10 +10,19 @@
 
         <div class="cd-timeline-content">
             <h4 class="timeline-name">{{bill.billName}}</h4>
-            <div *ngFor="let billParticipant of tripDetails.participants">
-                <h5>{{billParticipant.name}} owe {{bill.paidBy}} <span class="owe">{{billParticipant.price}}</span></h5>
+            <div *ngFor="let participant of bill.participants">
+                <h5 *ngIf="participant.name === bill.paidBy">
+                    <strong>
+                        {{ participant.name === user.name ? 'You' : participant.name }}
+                    </strong> paid this bill
+                </h5>
+                <h5 *ngIf="participant.name !== bill.paidBy">
+                    <strong>{{participant.name}}</strong> owes
+                    <strong>{{bill.paidBy === user.name ? 'You' : bill.paidBy}}</strong>
+                    <span class="owe">{{ currency }} {{participant.price}}</span>
+                </h5>
             </div>
-            <div class="paybill">
+            <div class="paybill" *ngIf="user.name !== bill.paidBy && isIncludedInBill(bill)">
                 <a class="btn btn-primary pay-bill">
                     Pay Bill
                 </a>

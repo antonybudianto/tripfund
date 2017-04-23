@@ -17,7 +17,7 @@ import { ModalConfig } from '../modal/modal.interface';
 })
 export class CardComponent implements OnInit {
 
-    @Output() select: EventEmitter<TripDetails> = new EventEmitter<TripDetails>();
+    @Output() select: EventEmitter<any> = new EventEmitter<any>();
     @Output() successAddBill: EventEmitter<any> = new EventEmitter<any>();
 
     trips: Array<Trips> =  [];
@@ -57,23 +57,24 @@ export class CardComponent implements OnInit {
         this.trips = trips;
     }
 
-    handleClickCard(tripId: any) {
-        this.tripService.fetchTripDetails(tripId)
+    handleClickCard(trip: any) {
+        this.tripService.fetchTripDetails(trip.tripId)
             .map(tripDetails => {
                 let tmp = tripDetails;
                 tmp['bills'] = tripDetails['bills'] ? Object.values(tripDetails['bills']) : [];
                 tmp['participants'] = tripDetails['participants'] ? Object.values(tripDetails['participants']) : [];
-                tmp['bills'].participants = Object.values(_.get(tripDetails,  'participants'));
+                tmp['bills'].forEach((bill) => {
+                    bill.participants = Object.values(_.get(bill,  'participants'));
+                });
                 return tmp;
             })
             .take(1)
             .subscribe(tripDetails => {
-                this.setTripDetails(tripDetails);
+                this.select.emit({
+                    tripDetails: tripDetails,
+                    currency: trip.currency
+                });
             }, () => []);
-    }
-
-    setTripDetails(tripDetails) {
-        this.select.emit(tripDetails);
     }
 
     saveBill(data: any) {
@@ -84,9 +85,10 @@ export class CardComponent implements OnInit {
         });
     }
 
-    showAddBill(id: string) {
+    showAddBill(trip: any) {
         this.modalConfig.cfr = this.cfr;
-        this.modalConfig.modalData.tripId = id;
+        this.modalConfig.modalData.tripId = trip.tripId;
+        this.modalConfig.modalData.currency = trip.currency;
         this.modalService.show(ModalBillComponent, this.modalConfig)
         .filter(result => result !== null)
         .subscribe((result: any) => {
