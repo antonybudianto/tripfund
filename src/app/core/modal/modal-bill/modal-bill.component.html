@@ -3,17 +3,21 @@
     <div class="modal-header">
       Add a Bill
     </div>
-    <form novalidate>
+    <form novalidate (ngSubmit)="handleSubmit(paybillForm)" #paybillForm="ngForm">
       <div class="modal-body text-center">
         <div class="modal-body__body">
           <div class="main-fields">
             <img src="../../../../public/images/general.png" class="category">
-            <input type="text" name="description"
+            <input type="text" name="billName"
+                required
                 class="description" placeholder="Description"
+                [ngClass]="{'has-success': data.billName,
+                'has-error': !data.billName && submitted}"
                 [(ngModel)]="data.billName"/>
-            <div class="input-group">
+            <div class="input-group" [ngClass]="{'has-success': data.total,
+                'has-error': !data.total && submitted}">
               <span class="input-group-addon">$</span>
-              <input type="text" name="billName" [(ngModel)]="data.total"
+              <input type="number" min="1" name="total" [(ngModel)]="data.total"
                 class="form-control" placeholder="0.00">
             </div>
             <div class="input-group">
@@ -37,7 +41,8 @@
             <tab heading="Split By Amounts" (select)="selectTab($event)">
               <app-split-bill [type]="selectedTab"
                 [total]="data.total"
-                [(participants)]="tripDetail.participants"></app-split-bill>
+                [(participants)]="tripDetail.participants"
+                (isValid)="isValid($event)"></app-split-bill>
             </tab>
           </tabset>
         </div>
@@ -46,7 +51,7 @@
         <button type="button" class="btn btn-default" (click)="closeModal(false)">
         {{ modalData.btnCancel }}
       </button>
-        <button type="button" class="btn btn-primary" (click)="closeModal(true)">
+        <button type="submit" class="btn btn-primary">
         {{ modalData.btnSave }}
       </button>
       </div>

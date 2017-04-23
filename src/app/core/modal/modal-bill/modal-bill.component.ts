@@ -25,6 +25,8 @@ export class ModalBillComponent {
     };
     tripDetail: TripDetails = new TripDetails();
     selectedTab = SplitBillType.EQUAL;
+    submitted: boolean;
+    isError: boolean;
     private tripId: string;
     private modal: ModalDirective;
     private modalDefaultData: Object = {
@@ -35,6 +37,7 @@ export class ModalBillComponent {
         'Split Equally': SplitBillType.EQUAL,
         'Split By Amounts': SplitBillType.AMOUNT
     };
+    private isValidAmount = true;
 
     constructor(private afDb: AngularFireDatabase,
         private tripService: TripService) { }
@@ -61,7 +64,7 @@ export class ModalBillComponent {
 
     closeModal(result: boolean) {
         let bill = {
-            tripId : this.tripDetail['$key'],
+            tripId: this.tripDetail['$key'],
             billName: this.data.billName,
             total: this.data.total,
             paidBy: this.data.paidBy,
@@ -77,5 +80,20 @@ export class ModalBillComponent {
 
     selectTab(value) {
         this.selectedTab = this.tabs[value.heading] || this.selectedTab;
+    }
+
+    isValid(value: boolean) {
+        this.isValidAmount = value;
+    }
+
+    handleSubmit(form: any) {
+        let formValue = form.value;
+        this.submitted = true;
+
+        if (!formValue.billName || !formValue.total || !this.isValidAmount) {
+            return;
+        }
+
+        this.closeModal(true);
     }
 }

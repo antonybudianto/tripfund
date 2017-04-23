@@ -11,6 +11,7 @@ export class SplitBillComponent implements OnChanges {
     @Input() currency = 'USD';
     @Input() total = 0;
     @Output() participantChange = new EventEmitter();
+    @Output() isValid = new EventEmitter();
 
     splitBillType = SplitBillType;
     billParticipants: Array<any> = [];
@@ -26,6 +27,13 @@ export class SplitBillComponent implements OnChanges {
     }
 
     ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
+        if (changes.type && changes.type.currentValue !== changes.type.previousValue) {
+            if (this.participants) {
+                this.participants.forEach((participant) => {
+                    participant.price = 0;
+                });
+            }
+        }
         if (changes.total && changes.total.currentValue !== changes.total.previousValue) {
             let total = parseInt(changes.total.currentValue, 10);
             if (this.type === SplitBillType.EQUAL && this.participants) {
@@ -34,5 +42,13 @@ export class SplitBillComponent implements OnChanges {
                 });
             }
         }
+    }
+
+    validatePrice(value) {
+        if (this.type === SplitBillType.EQUAL) {
+            this.isValid.emit(true);
+            return;
+        }
+        this.isValid.emit(value && value > 0);
     }
 }
