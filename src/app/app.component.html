@@ -1,6 +1,8 @@
-<app-header [brand]="appBrand"></app-header>
-<div class="app-container">
-    <app-loading [isLoading]="isLoading"></app-loading>
-    <router-outlet></router-outlet>
-    <app-modal></app-modal>
+<div class="app-wrapper">
+    <app-header [brand]="appBrand"></app-header>
+    <div class="app-container">
+        <app-loading [isLoading]="isLoading"></app-loading>
+        <router-outlet></router-outlet>
+        <app-modal></app-modal>
+    </div>
 </div>
