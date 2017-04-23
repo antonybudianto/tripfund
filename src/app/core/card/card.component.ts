@@ -64,7 +64,6 @@ export class CardComponent implements OnInit {
             })
             .take(1)
             .subscribe(tripDetails => {
-                console.log(tripDetails);
                 this.setTripDetails(tripDetails);
             }, () => []);
     }
@@ -76,7 +75,6 @@ export class CardComponent implements OnInit {
     saveBill(data: any) {
         this.tripService.saveBill(data)
         .then(res => {
-            console.log('add bill ok');
             this.successAddBill.emit();
             this.handleClickCard(data.tripId);
         });

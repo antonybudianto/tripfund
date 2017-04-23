@@ -77,7 +77,6 @@ export class SidebarComponent {
         this.modalService.show(ModalAddTripComponent, this.modalConfig)
         .filter(result => result !== null)
         .subscribe((result: any) => {
-            console.log(result);
             this.saveTrip(result);
         });
     }
