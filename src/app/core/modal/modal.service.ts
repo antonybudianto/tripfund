@@ -10,10 +10,6 @@ export class ModalService {
   subject$: Subject<ModalDispatchComponent> = new Subject<ModalDispatchComponent>();
   observable$: Observable<ModalDispatchComponent> = this.subject$.asObservable();
 
-  constructor() {
-    console.log('Modal Service Constructor');
-  }
-
   show(customComponent: any, config?: ModalConfig): Observable<any> {
     let result$ = new Subject<any>();
     this.dispatch({

@@ -11,10 +11,6 @@ export class CardDetailComponent {
 
     @Input() tripDetails: TripDetails;
 
-    constructor() {
-        console.log('constructor');
-    }
-
     isShow() {
         return this.tripDetails;
     }

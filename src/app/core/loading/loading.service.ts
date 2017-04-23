@@ -7,10 +7,6 @@ import { Observable } from 'rxjs/Observable';
 export class LoadingService {
     private subject$: Subject<boolean> = new Subject<boolean>();
 
-    constructor() {
-        console.log('Loading Service');
-    }
-
     setLoading(value: boolean) {
         this.subject$.next(value);
     }

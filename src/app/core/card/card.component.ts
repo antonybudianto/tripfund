@@ -1,10 +1,13 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ModalBillComponent } from './../modal/modal-bill/modal-bill.component';
+import { Component, OnInit, Output, EventEmitter, ComponentFactoryResolver } from '@angular/core';
 
 import * as _ from 'lodash';
 
 import { TripService } from '../trip.service';
 import { Trips } from '../../model/trips.model';
 import { TripDetails } from '../../model/tripDetails.model';
+import { ModalService } from '../modal/modal.service';
+import { ModalConfig } from '../modal/modal.interface';
 
 
 @Component({
@@ -15,12 +18,20 @@ import { TripDetails } from '../../model/tripDetails.model';
 export class CardComponent implements OnInit {
 
     @Output() select: EventEmitter<TripDetails> = new EventEmitter<TripDetails>();
+    @Output() successAddBill: EventEmitter<any> = new EventEmitter<any>();
 
     trips: Array<Trips> =  [];
     tripDetails: TripDetails;
     loading = false;
 
-    constructor(private tripService: TripService) {}
+    private modalConfig: ModalConfig = {
+        modalOptions: { backdrop: 'static' },
+        modalData: {}
+    };
+
+    constructor(private tripService: TripService,
+        private modalService: ModalService,
+        private cfr: ComponentFactoryResolver) {}
 
     ngOnInit() {
         this.fetch();
@@ -57,12 +68,29 @@ export class CardComponent implements OnInit {
             })
             .take(1)
             .subscribe(tripDetails => {
-                console.log(tripDetails);
                 this.setTripDetails(tripDetails);
             }, () => []);
     }
 
     setTripDetails(tripDetails) {
         this.select.emit(tripDetails);
+    }
+
+    saveBill(data: any) {
+        this.tripService.saveBill(data)
+        .then(res => {
+            this.successAddBill.emit();
+            this.handleClickCard(data.tripId);
+        });
+    }
+
+    showAddBill(id: string) {
+        this.modalConfig.cfr = this.cfr;
+        this.modalConfig.modalData.tripId = id;
+        this.modalService.show(ModalBillComponent, this.modalConfig)
+        .filter(result => result !== null)
+        .subscribe((result: any) => {
+            this.saveBill(result);
+        });
     }
 }

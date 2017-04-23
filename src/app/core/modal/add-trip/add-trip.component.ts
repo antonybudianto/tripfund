@@ -6,6 +6,7 @@ import * as _ from 'lodash';
 import { Subscription } from 'rxjs/Subscription';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { User } from '../../auth/user.model';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
     selector: 'app-add-trip',
@@ -27,8 +28,11 @@ export class ModalAddTripComponent {
         btnSave: 'Save',
         btnCancel: 'Cancel'
     };
+    private user: User;
 
-    constructor(private afDb: AngularFireDatabase) { }
+    constructor(private afDb: AngularFireDatabase,
+        private authService: AuthService) {
+    }
 
     boot(modal: ModalDirective, modalData: Object) {
         this.modal = modal;
@@ -43,7 +47,13 @@ export class ModalAddTripComponent {
                     }
                 };
             });
-            this.modal.show();
+            this.authService.getUser$()
+                .subscribe((user: User) => {
+                    this.users = _.filter(this.users, (data) => {
+                        return data.value.uid !== user.uid;
+                    });
+                    this.modal.show();
+                });
         });
     }
 

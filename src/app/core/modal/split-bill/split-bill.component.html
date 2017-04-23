@@ -5,15 +5,17 @@
             <strong>{{ participant.name }}</strong>
         </span>
         <span class="amount" *ngIf="type === splitBillType.EQUAL">
-            {{ currency }} {{ participant.amount }}
+            {{ currency }} {{ participant.price }}
         </span>
-        <div class="input-group" *ngIf="type === splitBillType.AMOUNT">
+        <div class="input-group" *ngIf="type === splitBillType.AMOUNT"
+            [ngClass]="{'has-success': participant.price && participant.price > 0,
+            'has-error': !participant.price || participant.price <= 0}">
             <span class="input-group-addon">{{ currency }}</span>
-            <input type="text" class="form-control" placeholder="0.00">
-        </div>
-        <div class="input-group" *ngIf="type === splitBillType.PERCENTAGE">
-            <input type="text" class="form-control" placeholder="0">
-            <span class="input-group-addon">%</span>
+            <input type="number"min="1" class="form-control"
+                placeholder="0.00"
+                [(ngModel)]="participant.price"
+                (ngModelChange)="validatePrice(participant.price)"
+            />
         </div>
     </div>
 </div>

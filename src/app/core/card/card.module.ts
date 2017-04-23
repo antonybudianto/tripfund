@@ -2,13 +2,15 @@ import { NgModule } from '@angular/core';
 
 import { SharedModule } from '../../shared/shared.module';
 import { CardComponent } from './card.component';
+import { ModalModule } from '../modal/modal.module';
 
 @NgModule({
     declarations: [
         CardComponent
     ],
     imports: [
-        SharedModule
+        SharedModule,
+        ModalModule
     ],
     exports: [
         CardComponent
