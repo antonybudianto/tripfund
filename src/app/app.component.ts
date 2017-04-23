@@ -1,5 +1,5 @@
 import { Component, ViewContainerRef } from '@angular/core';
-import { Router, Event, NavigationEnd, NavigationStart } from '@angular/router';
+import { Router, Event, NavigationEnd, NavigationStart, NavigationCancel } from '@angular/router';
 
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { MAIN } from './shared/constant/main';
@@ -27,10 +27,9 @@ export class AppComponent {
             if (event instanceof NavigationStart) {
                 this.isLoading = true;
             }
-            if (event instanceof NavigationEnd) {
+            if (event instanceof NavigationEnd || event instanceof NavigationCancel) {
                 this.isLoading = false;
             }
-            // this.navigationInterceptor(event);
         });
     }
 }
