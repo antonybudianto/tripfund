@@ -1,6 +1,9 @@
 import { Component, Input, ComponentFactoryResolver } from '@angular/core';
 
 import * as _ from 'lodash';
+import { ToastsManager } from 'ng2-toastr';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { Observable } from 'rxjs/Observable';
 
 import { ModalPaybillComponent } from '../modal/paybill/paybill.component';
 import { ModalService } from '../modal/modal.service';
@@ -24,9 +27,10 @@ export class CardDetailComponent {
         modalData: {}
     };
 
-
     constructor(private authService: AuthService,
+                private afDb: AngularFireDatabase,
                 private modalService: ModalService,
+                private toasts: ToastsManager,
                 private cfr: ComponentFactoryResolver) {
         this.authService.getUser$()
             .subscribe((user: User) => this.user = user);
@@ -40,24 +44,38 @@ export class CardDetailComponent {
         return _.includes(_.map(bill.participants, 'uid'), this.user.uid);
     }
 
-    getPrice(bill) {
-        const result = _.find(bill.participants, ['uid', this.user.uid]);
-        return result['price'];
+    getMyBillingParticipant(bill) {
+        return _.find(bill.participants, ['uid', this.user.uid]);
     }
 
     onHandlePaybill(bill) {
+        const myBillingParticipant = this.getMyBillingParticipant(bill);
         this.modalConfig.modalData = {
-            totalBill: this.getPrice(bill)
+            totalBill: myBillingParticipant['price']
         };
         this.modalConfig.cfr = this.cfr;
         this.modalService.show(ModalPaybillComponent, this.modalConfig)
             .filter(result => result.status)
             .subscribe((result: any) => {
-                const payload = {
-                    uid: this.user.uid,
-                    tripId: this.tripId,
-                    price: result
-                };
+                const urlObj = `trips/${this.tripId}/bills/${bill.billId}/participants`;
+                this.afDb.list(urlObj)
+                    .switchMap(
+                        res => {
+                            const myParticipant = _.find(res, ['uid', this.user.uid])['$key'];
+                            return this.afDb.object(`${urlObj}/${myParticipant}`).update({
+                                price: result.remainingBill
+                            });
+                        }
+                    )
+                    .take(1)
+                    .subscribe(
+                        _ => {
+                            this.toasts.success('Success Paid Billing.');
+                        },
+                        err => {
+                            this.toasts.error('Error Paid Billing.');
+                        }
+                    );
             });
     }
 }

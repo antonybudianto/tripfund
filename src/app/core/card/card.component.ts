@@ -63,7 +63,10 @@ export class CardComponent implements OnInit {
         this.tripService.fetchTripDetails(this.currentTripId)
             .map(tripDetails => {
                 let tmp = tripDetails;
-                tmp['bills'] = tripDetails['bills'] ? Object.values(tripDetails['bills']) : [];
+                tmp['bills'] = _.map(tripDetails['bills'], (val, key) => {
+                    val['billId'] = key;
+                    return val;
+                });
                 tmp['participants'] = tripDetails['participants'] ? Object.values(tripDetails['participants']) : [];
                 tmp['bills'].forEach((bill) => {
                     bill.participants = Object.values(_.get(bill,  'participants'));
