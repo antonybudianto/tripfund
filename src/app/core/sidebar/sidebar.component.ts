@@ -18,10 +18,6 @@ export class SidebarComponent {
 
     logout() {
         this.authService.logout()
-            .then(
-                res => {
-                    this.router.navigate(['/']);
-                }
-            );
+            .then(_ => this.router.navigate(['/']));
     }
 }
