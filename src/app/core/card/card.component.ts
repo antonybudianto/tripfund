@@ -23,6 +23,7 @@ export class CardComponent implements OnInit {
     trips: Array<Trips> =  [];
     tripDetails: TripDetails;
     loading = false;
+    currentTripId: string;
 
     private modalConfig: ModalConfig = {
         modalOptions: { backdrop: 'static' },
@@ -58,6 +59,7 @@ export class CardComponent implements OnInit {
     }
 
     handleClickCard(tripId: any) {
+        this.currentTripId = tripId;
         this.tripService.fetchTripDetails(tripId)
             .map(tripDetails => {
                 let tmp = tripDetails;
