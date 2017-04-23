@@ -10,9 +10,9 @@ import { TripDetails } from '../model/tripDetails.model';
     ]
 })
 export class DashboardComponent {
-    tripDetails: Array<TripDetails> = [];
+    tripDetails: TripDetails;
 
-    handleCardSelect(tripDetails: Array<TripDetails>) {
+    handleCardSelect(tripDetails: TripDetails) {
         this.tripDetails = tripDetails;
     }
 }

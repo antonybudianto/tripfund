@@ -42,7 +42,14 @@ module.exports = webpackMerge(commonConfig, {
     }),
     new webpack.LoaderOptionsPlugin({
       options: {
-        postcss: [require('postcss-cssnext')],
+        postcss: [
+          require('postcss-cssnext')({ browsers: ['last 2 versions'] }),
+          require('precss'),
+          require('postcss-mixins'),
+          require('postcss-nested'),
+          require('postcss-simple-vars'),
+          require('postcss-import')
+        ],
         htmlLoader: {
           minimize: false // workaround for ng2
         }

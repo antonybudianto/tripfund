@@ -25,6 +25,8 @@ img {
 }
 
 .navbar {
+    margin-bottom: 0;
+
     &-nav .dropdown-menu a:hover {
         background-color: #EEEEEE;
     }

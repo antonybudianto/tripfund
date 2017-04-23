@@ -56,15 +56,15 @@ export class CardComponent implements OnInit {
         this.tripService.fetchTripDetails(tripId)
             .map(tripDetails => {
                 let tmp = tripDetails;
-                tmp['bills'] = Object.values(tripDetails['bills']);
-                tmp['participants'] = Object.values(tripDetails['participants']);
+                tmp['bills'] = tripDetails['bills'] ? Object.values(tripDetails['bills']) : [];
+                tmp['participants'] = tripDetails['participants'] ? Object.values(tripDetails['participants']) : [];
                 return tmp;
             })
             .take(1)
             .subscribe(tripDetails => {
                 console.log(tripDetails);
                 this.setTripDetails(tripDetails);
-            }, null);
+            }, () => []);
     }
 
     setTripDetails(tripDetails) {
