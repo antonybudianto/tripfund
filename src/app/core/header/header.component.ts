@@ -43,7 +43,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     changePassword() {
         this.authService.sendPasswordResetEmail(this.user.email)
             .then(
-                _ => this.toastrService.success('Please check your email!.'),
+                _ => this.toastrService.success('Please check your email.'),
                 err => this.toastrService.error(err)
             );
     }
