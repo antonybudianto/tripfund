@@ -1,8 +1,9 @@
-import { CardDetailComponent } from './card-detail/card-detail.component';
-import { CardDetailModule } from './card-detail/card-detail.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { CardDetailComponent } from './card-detail/card-detail.component';
+import { CardDetailModule } from './card-detail/card-detail.module';
+import { ToastrModule } from './toastr/toastr.module';
 import { LoadingModule } from './loading/loading.module';
 import { AppFirebaseModule } from './firebase/app-firebase.module';
 import { HeaderModule } from './header/header.module';
@@ -22,7 +23,8 @@ import { SigninService } from '../guest/signin/signin.service';
         CardModule,
         SidebarModule,
         CardDetailModule,
-        LoadingModule
+        LoadingModule,
+        ToastrModule
     ],
     providers: [
         AuthService,
