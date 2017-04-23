@@ -1,19 +1,20 @@
 # TripFun
 
-# Hosted on Firebase
+## Hosted on Firebase
 https://tripfund-91050.firebaseapp.com
 
-# Starter used:
+## Starter used:
 - [angular-hackathon-starter](https://github.com/antonybudianto/angular-hackathon-starter)
 
-# Libraries used:
+## Libraries used:
 - [ngx-bootstrap](https://github.com/valor-software/ngx-bootstrap)
 - [Firebase SDK](https://www.npmjs.com/package/firebase)
 - [prime-ng](https://www.primefaces.org/primeng/)
 - [jQuery](https://jquery.com/)
+- [UUID](https://github.com/kelektiv/node-uuid)
 
-# Image sources
+## Image sources
 - https://www.toptal.com/designers/subtlepatterns/japanese-sayagata/
 
-# Backend and Hosting:
+## Backend and Hosting:
 - [Firebase](http://firebase.com/)
