@@ -4,6 +4,16 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 
+ .home__wrapper {
+     display: flex;
+     flex-direction: column;
+     height: 100%;
+
+     .intro-header {
+         flex-grow: 10;
+     }
+ }
+
 .topnav {
     font-size: 14px;
 }
