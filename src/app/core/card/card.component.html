@@ -4,7 +4,9 @@
 <div class="card-view" *ngIf="trips.length === 0 && !loading">
     <i class="fa fa-smile-o"></i> You don't have any trip yet. Let's create one!
 </div>
-<div *ngFor="let trip of trips" class="card-view">
+<div *ngFor="let trip of trips" class="card-view" [ngClass]="{
+    'active': trip.tripId === currentTripId
+}">
     <div class="card-panel">
         <div class="card-side-left">
             <h4 class="card-title">{{trip.tripName}}</h4>
