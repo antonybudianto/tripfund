@@ -79,11 +79,11 @@ export class CardComponent implements OnInit {
             }, () => []);
     }
 
-    saveBill(data: any) {
+    saveBill(trip: any, data: any) {
         this.tripService.saveBill(data)
         .then(res => {
             this.successAddBill.emit();
-            this.handleClickCard(data.tripId);
+            this.handleClickCard(trip);
         });
     }
 
@@ -94,7 +94,7 @@ export class CardComponent implements OnInit {
         this.modalService.show(ModalBillComponent, this.modalConfig)
         .filter(result => result !== null)
         .subscribe((result: any) => {
-            this.saveBill(result);
+            this.saveBill(trip, result);
         });
     }
 }
