@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { SidebarComponent } from './sidebar.component';
+import { ModalModule } from '../modal/modal.module';
 
 @NgModule({
     declarations: [
@@ -10,7 +11,8 @@ import { SidebarComponent } from './sidebar.component';
     ],
     imports: [
         CommonModule,
-        RouterModule
+        RouterModule,
+        ModalModule
     ],
     exports: [
         SidebarComponent
