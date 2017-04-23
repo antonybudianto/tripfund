@@ -1,0 +1,22 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      Add a Trip
+    </div>
+    <form novalidate>
+      <div class="modal-body text-center">
+        <div class="modal-body__body">
+            cek
+        </div>
+      </div>
+      <div class="modal-footer__button">
+        <button type="button" class="btn btn-default" (click)="closeModal(false)">
+        {{ modalData.btnCancel }}
+      </button>
+        <button type="button" class="btn btn-primary" (click)="closeModal(true)">
+        {{ modalData.btnSave }}
+      </button>
+      </div>
+    </form>
+  </div>
+</div>
