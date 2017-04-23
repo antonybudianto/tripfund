@@ -56,6 +56,7 @@ export class SidebarComponent {
     saveTripMap(tripId: string, data: any) {
         const { tripName, date, currency, participants } = data;
         this.authService.getAuth$()
+        .take(1)
         .subscribe((user) => {
             participants.push(user);
             let result = participants.reduce((acc, curr) => {
