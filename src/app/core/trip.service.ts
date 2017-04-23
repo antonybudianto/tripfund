@@ -21,7 +21,7 @@ export class TripService {
             });
     }
 
-    fetchTripDetails(tripId) {
-        this.afDb.object(`trips/${tripId}`);
+    fetchTripDetails(tripId): Observable<any> {
+        return this.afDb.object(`trips/${tripId}`);
     }
 }
