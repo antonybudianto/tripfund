@@ -8,6 +8,7 @@ https://tripfund-91050.firebaseapp.com
 
 ## Libraries used:
 - [ngx-bootstrap](https://github.com/valor-software/ngx-bootstrap)
+- [Bootswatch](https://bootswatch.com/)
 - [Firebase SDK](https://www.npmjs.com/package/firebase)
 - [prime-ng](https://www.primefaces.org/primeng/)
 - [jQuery](https://jquery.com/)
