@@ -20,6 +20,7 @@
     background-color: #fbfbfb;
     border-radius: 10px;
     padding: 10px;
+    border: 2px solid white;
 
     &.active {
         border: 2px solid lightseagreen;
