@@ -1,7 +1,7 @@
 <div class="card-view" *ngIf="!isShow()">
     <i class="fa fa-smile-o"></i> Please click "see details" to view
 </div>
-<div class="card-view" *ngIf="tripDetails?.bills?.length === 0">
+<div class="card-view" *ngIf="isShow() && tripDetails?.bills?.length === 0">
     <i class="fa fa-smile-o"></i> You don't have any bill yet. Let's create one!
 </div>
 <section id="cd-timeline" *ngIf="isShow()">
