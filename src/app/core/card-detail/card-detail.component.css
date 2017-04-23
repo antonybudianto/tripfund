@@ -45,6 +45,22 @@ nav ul, nav ol {
 .owes{
     color: #F39879;
 }
+.paybill{
+    margin: 0 auto;
+    text-align: center;
+}
+.pay-bill{
+    padding: 5px 10px;
+    background-color: transparent;
+    color: #18bc9c;
+    border: 1px solid #18bc9c;
+    margin: 10px auto;
+    width: 50%;
+}
+.pay-bill:hover{
+    background-color: #18bc9c;
+    color: white;
+}
 .cd-timeline-block {
     position: relative;
     margin: 2em 0;

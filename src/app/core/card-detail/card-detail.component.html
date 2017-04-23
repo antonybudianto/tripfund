@@ -13,6 +13,11 @@
             <div *ngFor="let billParticipant of tripDetails.participants">
                 <h5>{{billParticipant.name}} owe {{bill.paidBy}} <span class="owe">{{billParticipant.price}}</span></h5>
             </div>
+            <div class="paybill">
+                <a class="btn btn-primary pay-bill">
+                    Pay Bill
+                </a>
+            </div>
         </div>
     </div>
 </section>
