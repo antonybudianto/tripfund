@@ -15,6 +15,9 @@
         <a class="navbar-brand topnav" [routerLink]="['/']">tripfund</a>
     </div>
     <div class="collapse navbar-collapse" id="navbar">
+        <div class="nav navbar-nav navbar-right" *ngIf="loading">
+            <i class="fa fa-spin fa-spinner navbar-text"></i>
+        </div>
         <ul class="nav navbar-nav navbar-right" *ngIf="!loading">
             <li *ngIf="!user" dropdown [autoClose]="false" [isOpen]="isOpen">
                 <button dropdownToggle
