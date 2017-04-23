@@ -16,5 +16,9 @@ https://tripfund-91050.firebaseapp.com
 ## Image sources
 - https://www.toptal.com/designers/subtlepatterns/japanese-sayagata/
 
+## Icon sources
+- [FontAwesome](http://fontawesome.io/icons/)
+- Self made, please look at `/psd` folder
+
 ## Backend and Hosting:
 - [Firebase](http://firebase.com/)
