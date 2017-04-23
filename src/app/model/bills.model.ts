@@ -9,6 +9,6 @@ export class Bills {
         public method: string,
         public paidBy: string,
         public total: number,
-        public participants: Participants
+        public participants: Array<Participants>
     ) {}
 }
