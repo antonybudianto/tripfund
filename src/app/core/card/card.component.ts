@@ -55,7 +55,7 @@ export class CardComponent implements OnInit {
             .subscribe(tripDetails => {
                 console.log(tripDetails);
                 this.setTripDetails(tripDetails);
-            }, null);
+            }, () => []);
     }
 
     setTripDetails(tripDetails) {
