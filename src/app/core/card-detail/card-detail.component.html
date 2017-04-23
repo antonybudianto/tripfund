@@ -1,47 +1,18 @@
 <div class="card-view" *ngIf="!isShow()">
     <i class="fa fa-smile-o"></i> Please click "see details" to view
 </div>
-<section *ngIf="isShow()" class="cd-horizontal-timeline">
-    <div class="timeline">
-        <div class="events-wrapper">
-            <div class="events">
-                <ol>
-                    <li *ngFor="let bill of tripDetails.bills | unique, let i = index" [ngStyle]="{'margin-left': (50 * (i + 1)) + 'px'}">
-                        <a href="#0" data-date="16/01/2014" class="selected">{{bill.billDate}}</a>
-                    </li>
-                </ol>
 
-                <span class="filling-line" aria-hidden="true"></span>
-            </div>
+<section id="cd-timeline" *ngIf="isShow()">
+    <div class="cd-timeline-block" *ngFor="let bill of tripDetails.bills">
+        <div class="cd-timeline-img">
+            <img src="/favicon.ico">
         </div>
 
-        <ul class="cd-timeline-navigation">
-            <li><a href="#0" class="prev fa fa-angle-left"></a></li>
-            <li><a href="#0" class="next fa fa-angle-right"></a></li>
-        </ul>
-    </div>
-
-    <div class="events-content">
-        <ol *ngFor="let bill of tripDetails.bills">
-            <li class="selected" data-date="16/01/2014">
-                <h2>{{bill.billName}}</h2>
-                <em>{{bill.billDate}}</em>
-                <div class="card-panel">
-                    <div class="card-side-left">
-                        <h5>Kopi StarCoks</h5>
-                    </div>
-                    <div class="card-side-right ">
-                        <label>Rp 15000</label>
-                    </div>
-                </div>
-            </li>
-        </ol>
+        <div class="cd-timeline-content">
+            <h4 class="timeline-name">{{bill.billName}}</h4>
+            <div *ngFor="let billParticipant of tripDetails.participants">
+                <h5>{{billParticipant.name}} owe {{bill.paidBy}} <span class="owe">{{billParticipant.price}}</span></h5>
+            </div>
+        </div>
     </div>
 </section>
-
-<div *ngIf="isShow()">
-    <div class="profile" *ngFor="let participant of tripDetails.participants">
-        <img src="/favicon.ico" class="circle" width="50" height="50" alt="">
-        <h6>{{participant.name}}</h6>
-    </div>
-</div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { TripDetails } from '../../model/tripDetails.model';
 
@@ -7,7 +7,7 @@ import { TripDetails } from '../../model/tripDetails.model';
     templateUrl: './card-detail.component.html',
     styleUrls: ['./card-detail.component.css']
 })
-export class CardDetailComponent implements OnChanges {
+export class CardDetailComponent {
 
     @Input() tripDetails: TripDetails;
 
@@ -16,10 +16,6 @@ export class CardDetailComponent implements OnChanges {
     }
 
     isShow() {
-        return this.tripDetails && this.tripDetails.bills.length > 0;
-    }
-
-    ngOnChanges() {
-        console.log(this.tripDetails);
+        return this.tripDetails;
     }
 }

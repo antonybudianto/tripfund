@@ -1,8 +1,11 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
+import * as _ from 'lodash';
+
 import { TripService } from '../trip.service';
 import { Trips } from '../../model/trips.model';
 import { TripDetails } from '../../model/tripDetails.model';
+
 
 @Component({
     selector: 'app-card',
@@ -49,6 +52,7 @@ export class CardComponent implements OnInit {
                 let tmp = tripDetails;
                 tmp['bills'] = tripDetails['bills'] ? Object.values(tripDetails['bills']) : [];
                 tmp['participants'] = tripDetails['participants'] ? Object.values(tripDetails['participants']) : [];
+                tmp['bills'].participants = Object.values(_.get(tripDetails,  'participants'));
                 return tmp;
             })
             .take(1)
