@@ -25,3 +25,13 @@
         <a href="#" class="btn btn-primary add-bill">Add Bill</a>
     </div>
 </div>
+<div class="row">
+    <div class="col-md-12 text-center">
+        <button [disabled]="loading" (click)="handleRefresh()" class="btn btn-primary btn-sm">
+            <i class="fa fa-refresh"
+                [ngClass]="{
+                    'fa-spin': loading
+                }"></i> Refresh my trip
+        </button>
+    </div>
+</div>

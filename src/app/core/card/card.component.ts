@@ -20,6 +20,14 @@ export class CardComponent implements OnInit {
     constructor(private tripService: TripService) {}
 
     ngOnInit() {
+        this.fetch();
+    }
+
+    handleRefresh() {
+        this.fetch();
+    }
+
+    fetch() {
         this.loading = true;
 
         this.tripService.fetchTrips()

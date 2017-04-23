@@ -1,4 +1,4 @@
-import { Participants } from './participants.model'
+import { Participants } from './participants.model';
 
 export class Bills {
 

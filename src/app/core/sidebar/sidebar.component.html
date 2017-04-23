@@ -1,15 +1,15 @@
 <nav class="side-nav">
     <ul class="nav navbar-nav">
         <li>
-            <a (click)="showAddTrip()">
+            <a [routerLink]="['/dashboard']" routerLinkActive="active">
                 <img [src]="homeIcon" width="64" height="64">
-                <span>Add Trip</span>
+                <span>Home</span>
             </a>
         </li>
         <li>
-            <a href="#">
-                <img [src]="homeIcon" width="64" height="64">
-                <span>Home</span>
+            <a (click)="showAddTrip()">
+                <img src="/icons/add.png" width="64" height="64">
+                <span>Add Trip</span>
             </a>
         </li>
         <li>
