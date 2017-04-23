@@ -22,6 +22,6 @@ export class TripService {
     }
 
     fetchTripDetails(tripId) {
-        this.afDb.object(`trips/${tripId}`);
+        return this.afDb.object(`trips/${tripId}`);
     }
 }

@@ -11,23 +11,23 @@
                     class="form-control description" placeholder="Trip Name" />
             </div>
             <div class="row">
-                <label>Date : {{data.date | date:'fullDate' }}</label>
-                <datepicker class="date" [(ngModel)]="data.date" name="date"></datepicker>
+                <label>Participants</label>
+                <br/>
+                <p-multiSelect name="participants" [options]="users"
+                    [(ngModel)]="data.participants"></p-multiSelect>
             </div>
-             <div class="row">
+            <div class="row">
                 <label>Currency</label>
                 <br/>
                  <select id="currency" class="form-control" name="currency"
-                    [(ngModel)]="data.currency" (change)="search()">
+                    [(ngModel)]="data.currency">
                     <option value="USD">USD</option>
                     <option value="IDR">IDR</option>
                 </select>
             </div>
             <div class="row">
-                <label>Participants</label>
-                <br/>
-                <p-multiSelect name="participants" [options]="users"
-                    [(ngModel)]="data.participants"></p-multiSelect>
+                <label>Date : {{data.date | date:'fullDate' }}</label>
+                <datepicker class="date" [(ngModel)]="data.date" name="date"></datepicker>
             </div>
         </div>
       </div>
