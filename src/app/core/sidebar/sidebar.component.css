@@ -6,6 +6,7 @@
     .side-nav>ul>li>a {
         -webkit-transition: 0.1s;
         transition: 0.1s;
+        border-right: 2px solid white;
     }
     .side-nav>ul>li>a:hover, .side-nav>ul>li>a:focus, .side-nav>ul>li>a.active {
         border-right: 2px solid lightseagreen;
