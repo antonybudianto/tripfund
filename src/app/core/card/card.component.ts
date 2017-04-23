@@ -23,6 +23,14 @@ export class CardComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.fetch();
+    }
+
+    handleRefresh() {
+        this.fetch();
+    }
+
+    fetch() {
         this.loading = true;
         this.authService.getAuth$()
         .switchMap((user: User) => {
