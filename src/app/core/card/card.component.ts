@@ -1,8 +1,11 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ModalBillComponent } from './../modal/modal-bill/modal-bill.component';
+import { Component, OnInit, Output, EventEmitter, ComponentFactoryResolver } from '@angular/core';
 
 import { TripService } from '../trip.service';
 import { Trips } from '../../model/trips.model';
 import { TripDetails } from '../../model/tripDetails.model';
+import { ModalService } from '../modal/modal.service';
+import { ModalConfig } from '../modal/modal.interface';
 
 @Component({
     selector: 'app-card',
@@ -16,8 +19,14 @@ export class CardComponent implements OnInit {
     trips: Array<Trips> =  [];
     tripDetails: TripDetails;
     loading = false;
+    private modalConfig: ModalConfig = {
+        modalOptions: { backdrop: 'static' },
+        modalData: {}
+    };
 
-    constructor(private tripService: TripService) {}
+    constructor(private tripService: TripService,
+        private modalService: ModalService,
+        private cfr: ComponentFactoryResolver) {}
 
     ngOnInit() {
         this.fetch();
@@ -60,5 +69,14 @@ export class CardComponent implements OnInit {
 
     setTripDetails(tripDetails) {
         this.select.emit(tripDetails);
+    }
+
+    showAddBill(id: string) {
+        this.modalConfig.cfr = this.cfr;
+        this.modalConfig.modalData.tripId = id;
+        this.modalService.show(ModalBillComponent, this.modalConfig)
+        .subscribe((result: any) => {
+            console.log(result);
+        });
     }
 }

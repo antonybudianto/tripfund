@@ -8,31 +8,36 @@
         <div class="modal-body__body">
           <div class="main-fields">
             <img src="../../../../public/images/general.png" class="category">
-            <input type="text" class="description" placeholder="Description" />
+            <input type="text" name="description"
+                class="description" placeholder="Description"
+                [(ngModel)]="data.billName"/>
             <div class="input-group">
               <span class="input-group-addon">$</span>
-              <input type="text" class="form-control" placeholder="0.00">
+              <input type="text" name="billName" [(ngModel)]="data.total"
+                class="form-control" placeholder="0.00">
             </div>
             <div class="input-group">
               <span class="input-group-addon">Paid By</span>
-              <select class="form-control" name="paid" id="paid">
-                <option>Test</option>
+              <select class="form-control" name="paid" id="paid"
+                [(ngModel)]="data.paidBy">
+                <option *ngFor="let participant of tripDetail.participants"
+                    [ngValue]="participant.name">
+                    {{ participant.name }}
+                </option>
               </select>
             </div>
           </div>
           <br/>
           <tabset #billTabs>
-            <tab heading="Split Equally">
-              <app-split-bill [type]="splitBillType.EQUAL"
-                [participants]="modalData.participants"></app-split-bill>
+            <tab heading="Split Equally" (select)="selectTab($event)">
+              <app-split-bill [type]="selectedTab"
+                [total]="data.total"
+                [(participants)]="tripDetail.participants"></app-split-bill>
             </tab>
-            <tab heading="Split By Percentages">
-              <app-split-bill [type]="splitBillType.PERCENTAGE"
-                [participants]="modalData.participants"></app-split-bill>
-            </tab>
-            <tab heading="Split By Amounts">
-              <app-split-bill [type]="splitBillType.AMOUNT"
-                [participants]="modalData.participants"></app-split-bill>
+            <tab heading="Split By Amounts" (select)="selectTab($event)">
+              <app-split-bill [type]="selectedTab"
+                [total]="data.total"
+                [(participants)]="tripDetail.participants"></app-split-bill>
             </tab>
           </tabset>
         </div>

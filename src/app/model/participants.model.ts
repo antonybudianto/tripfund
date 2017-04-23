@@ -1,7 +1,7 @@
 export class Participants {
 
     constructor(
-        public userId: string,
+        public uid: string,
         public name: string
     ) {}
 }
