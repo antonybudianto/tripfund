@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
+import { TripDetails } from '../model/tripDetails.model';
 
 @Component({
     selector: 'app-dashboard',
@@ -8,9 +10,9 @@ import { Component, OnInit } from '@angular/core';
     ]
 })
 export class DashboardComponent {
-    bills: Array<any> = [];
+    tripDetails: Array<TripDetails> = [];
 
-    handleCardSelect(bills: Array<any>) {
-        this.bills = bills;
+    handleCardSelect(tripDetails: Array<TripDetails>) {
+        this.tripDetails = tripDetails;
     }
 }

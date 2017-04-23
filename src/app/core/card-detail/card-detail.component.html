@@ -1,15 +1,20 @@
-<section class="cd-horizontal-timeline">
+<div class="card-view" *ngIf="tripDetails.length === 0">
+    <i class="fa fa-smile-o"></i> You don't have any trip yet. Let's create one!
+</div>
+<section *ngIf="tripDetails.length !== 0" class="cd-horizontal-timeline">
     <div class="timeline">
         <div class="events-wrapper">
             <div class="events">
                 <ol>
-                    <li class="distance"><a href="#0" data-date="16/01/2014" class="selected">16 Jan</a></li>
+                    <li *ngFor="let bill of tripDetails.bills | unique, let i = index" [ngStyle]="{'margin-left': (50 * (i + 1)) + 'px'}">
+                        <a href="#0" data-date="16/01/2014" class="selected">{{bill.billDate}}</a>
+                    </li>
                 </ol>
 
                 <span class="filling-line" aria-hidden="true"></span>
             </div>
         </div>
-            
+
         <ul class="cd-timeline-navigation">
             <li><a href="#0" class="prev fa fa-angle-left"></a></li>
             <li><a href="#0" class="next fa fa-angle-right"></a></li>
@@ -17,10 +22,10 @@
     </div>
 
     <div class="events-content">
-        <ol>
+        <ol *ngFor="let bill of tripDetails.bills">
             <li class="selected" data-date="16/01/2014">
-                <h2>Bill 1</h2>
-                <em>January 16th, 2014</em>
+                <h2>{{bill.billName}}</h2>
+                <em>{{bill.billDate}}</em>
                 <div class="card-panel">
                     <div class="card-side-left">
                         <h5>Kopi StarCoks</h5>
