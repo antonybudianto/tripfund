@@ -6,16 +6,38 @@
     <form novalidate>
       <div class="modal-body text-center">
         <div class="modal-body__body">
-            cek
+            <div class="row">
+                <input type="text" name="description" [(ngModel)]="data.tripName"
+                    class="form-control description" placeholder="Trip Name" />
+            </div>
+            <div class="row">
+                <label>Date : {{data.date | date:'fullDate' }}</label>
+                <datepicker class="date" [(ngModel)]="data.date" name="date"></datepicker>
+            </div>
+             <div class="row">
+                <label>Currency</label>
+                <br/>
+                 <select id="currency" class="form-control" name="currency"
+                    [(ngModel)]="data.currency" (change)="search()">
+                    <option value="USD">USD</option>
+                    <option value="IDR">IDR</option>
+                </select>
+            </div>
+            <div class="row">
+                <label>Participants</label>
+                <br/>
+                <p-multiSelect name="participants" [options]="users"
+                    [(ngModel)]="data.participants"></p-multiSelect>
+            </div>
         </div>
       </div>
       <div class="modal-footer__button">
         <button type="button" class="btn btn-default" (click)="closeModal(false)">
-        {{ modalData.btnCancel }}
-      </button>
+            {{ modalData.btnCancel }}
+        </button>
         <button type="button" class="btn btn-primary" (click)="closeModal(true)">
-        {{ modalData.btnSave }}
-      </button>
+            {{ modalData.btnSave }}
+        </button>
       </div>
     </form>
   </div>

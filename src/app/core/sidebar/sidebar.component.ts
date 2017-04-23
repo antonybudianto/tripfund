@@ -1,6 +1,6 @@
 import { ModalAddTripComponent } from './../modal/add-trip/add-trip.component';
 import { Router } from '@angular/router';
-import { Component, ComponentFactoryResolver } from '@angular/core';
+import { Component, ComponentFactoryResolver, Output, EventEmitter } from '@angular/core';
 
 import { AuthService } from '../auth/auth.service';
 import { ModalService } from '../modal/modal.service';
@@ -21,26 +21,24 @@ export class SidebarComponent {
     };
 
     constructor(private router: Router,
-                private modalService: ModalService,
-                private cfr: ComponentFactoryResolver,
-                private authService: AuthService) {
-                    this.modalConfig.cfr = cfr;
-                    this.showAddTrip();
-                }
+        private authService: AuthService,
+        private modalService: ModalService,
+        private cfr: ComponentFactoryResolver) {}
 
     logout() {
         this.authService.logout()
             .then(
-                res => {
-                    this.router.navigate(['/']);
-                }
+            res => {
+                this.router.navigate(['/']);
+            }
             );
     }
 
     showAddTrip() {
+        this.modalConfig.cfr = this.cfr;
         this.modalService.show(ModalAddTripComponent, this.modalConfig)
-        .subscribe((result: any) => {
-            console.log(result);
-        });
+            .subscribe((result: any) => {
+                console.log(result);
+            });
     }
 }
