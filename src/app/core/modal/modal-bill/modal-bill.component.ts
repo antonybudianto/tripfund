@@ -4,6 +4,8 @@ import { Subject } from 'rxjs/Subject';
 import { ModalDirective } from 'ngx-bootstrap';
 import { Subscription } from 'rxjs/Rx';
 import * as _ from 'lodash';
+import { SplitBillType } from '../split-bill/split-bill-type.enum';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
     selector: 'app-modal-bill',
@@ -13,11 +15,15 @@ import * as _ from 'lodash';
 export class ModalBillComponent {
     modalData: any;
     modalSubject$: Subject<any>;
+    splitBillType = SplitBillType;
     private modal: ModalDirective;
     private modalDefaultData: Object = {
         btnSave: 'Save',
         btnCancel: 'Cancel'
     };
+
+    constructor(private afDb: AngularFireDatabase) {
+    }
 
     boot(modal: ModalDirective, modalData: Object) {
         this.modal = modal;
