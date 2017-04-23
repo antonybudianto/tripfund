@@ -4,8 +4,7 @@ import { Participants } from './participants.model';
 export class TripDetails {
 
     constructor(
-        public tripId: string,
-        public bills: Array<Bills>,
-        public participants: Array<Participants>
+        public bills: Array<Bills> = null,
+        public participants: Array<Participants> = null
     ) {}
 }

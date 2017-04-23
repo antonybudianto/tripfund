@@ -12,6 +12,7 @@ import { ModalBillComponent } from './modal-bill/modal-bill.component';
 import { SharedModule } from '../../shared/shared.module';
 import { SplitBillComponent } from './split-bill/split-bill.component';
 import { ModalAddTripComponent } from './add-trip/add-trip.component';
+import { TripService } from '../trip.service';
 
 @NgModule({
     imports: [
@@ -36,6 +37,7 @@ import { ModalAddTripComponent } from './add-trip/add-trip.component';
     ],
     providers: [
         ModalService,
+        TripService,
         {
             provide: ANALYZE_FOR_ENTRY_COMPONENTS, useValue: [
                 ModalComponent,

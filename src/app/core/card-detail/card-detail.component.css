@@ -10,6 +10,12 @@ ol, ul {
     display: flex;
     align-items: center;
 }
+.card-view{
+    margin: 10px;
+    background-color: #fbfbfb;
+    border-radius: 10px;
+    padding: 10px;
+}
 .card-side-left{
     flex-grow: 3;
 }
@@ -156,7 +162,7 @@ nav ul, nav ol {
     overflow: hidden;
 }
 .distance{
-    margin-left: 120px;
+    left: 120px;
 }
 .cd-timeline-navigation a.prev {
     left: 0;
