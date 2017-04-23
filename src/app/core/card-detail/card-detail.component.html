@@ -1,7 +1,9 @@
 <div class="card-view" *ngIf="!isShow()">
     <i class="fa fa-smile-o"></i> Please click "see details" to view
 </div>
-
+<div class="card-view" *ngIf="tripDetails?.bills?.length === 0">
+    <i class="fa fa-smile-o"></i> You don't have any bill yet. Let's create one!
+</div>
 <section id="cd-timeline" *ngIf="isShow()">
     <div class="cd-timeline-block" *ngFor="let bill of tripDetails.bills">
         <div class="cd-timeline-img">
@@ -18,8 +20,8 @@
                 </h5>
                 <h5 *ngIf="participant.name !== bill.paidBy">
                     <strong>{{participant.name}}</strong> owes
-                    <strong>{{bill.paidBy === user.name ? 'You' : bill.paidBy}}</strong>
                     <span class="owe">{{ currency }} {{participant.price}}</span>
+                    <strong>to {{bill.paidBy === user.name ? 'You' : bill.paidBy}}</strong>
                 </h5>
             </div>
             <div class="paybill" *ngIf="user.name !== bill.paidBy && isIncludedInBill(bill)">
