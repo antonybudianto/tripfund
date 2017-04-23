@@ -1,20 +1,16 @@
 <div class="card-view" *ngIf="loading">
     <i class="fa fa-spinner fa-spin"></i> Loading trips...
 </div>
+<div class="card-view" *ngIf="trips.length === 0 && !loading">
+    <i class="fa fa-smile-o"></i> You don't have any trip yet. Let's create one!
+</div>
 <div *ngFor="let trip of trips" class="card-view">
     <div class="card-panel">
         <div class="card-side-left">
             <h4 class="card-title">{{trip.tripName}}</h4>
         </div>
         <div class="card-side-right">
-            <span class="fa fa-money card-money"><label class="fa-left"></label></span>
-        </div>
-    </div>
-    <div class="card-panel">
-        <div class="card-side-left">
-            <h6 class="card-name">
-                <span class="fa fa-user-o card-money"><label class="fa-left"></label></span>
-            </h6>
+            <span class="fa fa-money card-money"><label class="fa-left">{{trip.currency}}</label></span>
         </div>
     </div>
     <div class="card-panel">
@@ -22,7 +18,17 @@
             <span class="fa fa-calendar-o panel-calendar"><label class="fa-left">{{trip.date}}</label></span>
         </div>
         <div class="card-side-right">
-            <a (click)="handleClickCard(trip)">see details</a>
+            <a (click)="handleClickCard(trip.tripId)">see details</a>
         </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 text-center">
+        <button [disabled]="loading" (click)="handleRefresh()" class="btn btn-primary btn-sm">
+            <i class="fa fa-refresh"
+                [ngClass]="{
+                    'fa-spin': loading
+                }"></i> Refresh my trip
+        </button>
     </div>
 </div>

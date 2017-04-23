@@ -8,5 +8,8 @@ import { SplitBillType } from './split-bill-type.enum';
 })
 export class SplitBillComponent {
     @Input() type: SplitBillType = SplitBillType.EQUAL;
+    @Input() currency = 'USD';
     @Input() participants: Array<any> = [];
+
+    splitBillType = SplitBillType;
 }

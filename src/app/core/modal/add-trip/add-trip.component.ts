@@ -2,28 +2,22 @@ import { Component, OnInit } from '@angular/core';
 
 import { Subject } from 'rxjs/Subject';
 import { ModalDirective } from 'ngx-bootstrap';
-import { Subscription } from 'rxjs/Rx';
 import * as _ from 'lodash';
-import { SplitBillType } from '../split-bill/split-bill-type.enum';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
-    selector: 'app-modal-bill',
-    templateUrl: './modal-bill.component.html',
-    styleUrls: ['./modal-bill.component.css']
+    selector: 'app-add-trip',
+    templateUrl: './add-trip.component.html',
+    styleUrls: ['./add-trip.component.css']
 })
-export class ModalBillComponent {
+export class ModalAddTripComponent {
     modalData: any;
     modalSubject$: Subject<any>;
-    splitBillType = SplitBillType;
     private modal: ModalDirective;
     private modalDefaultData: Object = {
         btnSave: 'Save',
         btnCancel: 'Cancel'
     };
-
-    constructor(private afDb: AngularFireDatabase) {
-    }
 
     boot(modal: ModalDirective, modalData: Object) {
         this.modal = modal;
