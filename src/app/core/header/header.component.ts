@@ -3,7 +3,9 @@ import { Component, Input, ChangeDetectionStrategy,
     OnDestroy, OnInit, ChangeDetectorRef } from '@angular/core';
 
 import { Subscription } from 'rxjs/Subscription';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
+import { User } from '../auth/user.model';
 import { AuthService } from './../auth/auth.service';
 
 @Component({
@@ -16,25 +18,39 @@ import { AuthService } from './../auth/auth.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
     @Input() brand: string;
-    user: any;
+    user: User;
     favicon: any = require('../../../public/favicon.ico');
     loading = false;
     private subscriptions: Subscription[] = [];
 
     constructor(private authService: AuthService,
                 private cd: ChangeDetectorRef,
+                private toastrService: ToastsManager,
                 private router: Router) {}
 
     ngOnInit() {
         this.loading = true;
         this.subscriptions.push(
-            this.authService.getAuth$()
-            .subscribe(user => {
-                this.loading = false;
-                this.user = user;
-                this.cd.markForCheck();
-            })
+            this.authService.getUser$()
+                .subscribe((user: User) => {
+                    this.loading = false;
+                    this.user = user;
+                    this.cd.markForCheck();
+                })
         );
+    }
+
+    changePassword() {
+        this.authService.sendPasswordResetEmail(this.user.email)
+            .then(
+                _ => this.toastrService.success('Please check your email.'),
+                err => this.toastrService.error(err)
+            );
+    }
+
+    logout() {
+        this.authService.logout()
+            .then(_ => this.router.navigate(['/']));
     }
 
     ngOnDestroy() {

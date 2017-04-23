@@ -5,7 +5,7 @@ export class TripDetails {
 
     constructor(
         public tripId: string,
-        public bills: Bills,
-        public participants: Participants
+        public bills: Array<Bills>,
+        public participants: Array<Participants>
     ) {}
 }

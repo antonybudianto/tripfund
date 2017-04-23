@@ -15,6 +15,9 @@
         <a class="navbar-brand topnav" [routerLink]="['/']">tripfund</a>
     </div>
     <div class="collapse navbar-collapse" id="navbar">
+        <div class="nav navbar-nav navbar-right" *ngIf="loading">
+            <i class="fa fa-spin fa-spinner navbar-text"></i>
+        </div>
         <ul class="nav navbar-nav navbar-right" *ngIf="!loading">
             <li *ngIf="!user" dropdown [autoClose]="false" [isOpen]="isOpen">
                 <button dropdownToggle
@@ -38,8 +41,7 @@
             <li class="dropdown" *ngIf="user">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome. {{user.name}} <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Change password</a></li>
+                    <li><a (click)="changePassword()">Change password</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a (click)="logout()">Logout</a></li>
                 </ul>

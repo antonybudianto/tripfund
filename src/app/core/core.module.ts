@@ -1,8 +1,10 @@
-import { CardDetailComponent } from './card-detail/card-detail.component';
-import { CardDetailModule } from './card-detail/card-detail.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { RedirectIfAuthGuard } from './redirect-if-authenticated.guard';
+import { CardDetailComponent } from './card-detail/card-detail.component';
+import { CardDetailModule } from './card-detail/card-detail.module';
+import { ToastrModule } from './toastr/toastr.module';
 import { LoadingModule } from './loading/loading.module';
 import { AppFirebaseModule } from './firebase/app-firebase.module';
 import { HeaderModule } from './header/header.module';
@@ -11,6 +13,7 @@ import { SidebarModule } from './sidebar/sidebar.module';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthService } from './auth/auth.service';
 import { SigninService } from '../guest/signin/signin.service';
+import { TripService } from './trip.service';
 
 @NgModule({
     imports: [
@@ -22,12 +25,15 @@ import { SigninService } from '../guest/signin/signin.service';
         CardModule,
         SidebarModule,
         CardDetailModule,
-        LoadingModule
+        LoadingModule,
+        ToastrModule
     ],
     providers: [
         AuthService,
         SigninService,
-        AuthGuard
+        TripService,
+        AuthGuard,
+        RedirectIfAuthGuard
     ]
 })
 export class CoreModule {

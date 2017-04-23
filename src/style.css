@@ -37,3 +37,7 @@ a {
 .margin-top {
     margin-top: 20px;
 }
+
+#toast-container {
+    top: 5%;
+}
