@@ -37,39 +37,40 @@ export class SidebarComponent {
 
     async saveTrip(data: any) {
         const { participants } = data;
-        let tmp = participants.reduce((acc, curr) => {
-            const { uid, name } = curr;
-            acc[uuid()] = { uid, name };
-            return acc;
-        }, {});
+        this.authService.getUser$()
+        .take(1)
+        .subscribe(async (user) => {
+            participants.push(user);
+            let tmp = participants.reduce((acc, curr) => {
+                const { uid, name } = curr;
+                acc[uuid()] = { uid, name };
+                return acc;
+            }, {});
+            data.participants = participants;
 
-        try {
-            const result = await this.afDatabase.list('/trips')
-                .push({ participants: tmp });
-            const tripId = result.key;
-            this.saveTripMap(tripId, data);
-        } catch (e) {
-            console.log(e);
-        }
+            try {
+                const result = await this.afDatabase.list('/trips')
+                    .push({ participants: tmp });
+                const tripId = result.key;
+                this.saveTripMap(tripId, data);
+            } catch (e) {
+                console.log(e);
+            }
+        });
     }
 
     saveTripMap(tripId: string, data: any) {
         const { tripName, date, currency, participants } = data;
-        this.authService.getAuth$()
-        .take(1)
-        .subscribe((user) => {
-            participants.push(user);
-            let result = participants.reduce((acc, curr) => {
-                acc[`/trip-maps/${curr.uid}/${uuid()}`] = {
-                    tripName, date, currency, tripId
-                };
-                return acc;
-            }, {});
+        let result = participants.reduce((acc, curr) => {
+            acc[`/trip-maps/${curr.uid}/${uuid()}`] = {
+                tripName, date, currency, tripId
+            };
+            return acc;
+        }, {});
 
-            this.afDatabase.object('/').update(result)
-            .then(res => {
-                this.afterAddTrip.emit();
-            });
+        this.afDatabase.object('/').update(result)
+        .then(res => {
+            this.afterAddTrip.emit();
         });
     }
 
